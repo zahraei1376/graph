@@ -16,6 +16,25 @@ export class GraphWithAdjacencyList {
             this.adjacencyLists[node2].push(node1);
         }
     }
+    BFS = (start) => {
+        const queue = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+        visited[start] = true;
+        while (queue.length) {
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+            console.log(currentVertex);
+            this.adjacencyLists[currentVertex].forEach((neighbor) => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            });
+        }
+        return result;
+    }
 
     print = () => {
         let result = ``;
@@ -39,6 +58,26 @@ export class GraphWithAdjacencyList2 {
         if (!directed) {
             this.adjacencyLists[node2].add(node1);
         }
+    }
+
+
+
+    BFS = (startNode) => {
+        const queue = [startNode];
+        const visitedNodes = [];
+        visitedNodes[startNode] = true;
+        let result = ``;
+        while (queue.length) {
+            let currentVisited = queue.shift();
+            result += currentVisited + " ";
+            this.adjacencyLists[currentVisited].forEach(connectNode => {
+                if (!visitedNodes[connectNode]) {
+                    visitedNodes[connectNode] = true;
+                    queue.push(connectNode);
+                }
+            })
+        }
+        return result;
     }
 
     print = () => {
