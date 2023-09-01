@@ -29,12 +29,13 @@ export class GraphWithAdjacencyList {
         const visitedNodes = [];
         let result = ``;
 
-        const DFS_VISIT = (adjacencyListNode) => {
-            for (let j = 0; j < adjacencyListNode.length; j++) {
-                if (!visitedNodes[adjacencyListNode[j]]) {
-                    result += adjacencyListNode[j];
-                    visitedNodes[adjacencyListNode[j]] = true;
-                    DFS_VISIT(adjacencyListNode[j])
+        const DFS_VISIT = (node) => {
+            const neighbors = this.adjacencyLists[node];
+            for (let j = 0; j < neighbors.length; j++) {
+                if (!visitedNodes[neighbors[j]]) {
+                    result += neighbors[j];
+                    visitedNodes[neighbors[j]] = true;
+                    DFS_VISIT(neighbors[j])
                 }
             }
         }
@@ -43,7 +44,7 @@ export class GraphWithAdjacencyList {
             if (!visitedNodes[i]) {
                 visitedNodes[i] = true;
                 result += "\n" + i;
-                DFS_VISIT(this.adjacencyLists[i]);
+                DFS_VISIT(i);
             }
         }
 
