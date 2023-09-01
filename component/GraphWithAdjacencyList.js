@@ -76,6 +76,13 @@ export class GraphWithAdjacencyList2 {
         }
 
         DFS_VISIT(startNode);
+        //If the graph is not connected or if there is no edge to a certain vertex in the directed graph, check it as well.
+        for (let i = 0; i < Array.from(this.adjacencyLists).length; i++) {
+            if (!visitedNodes[i]) {
+                DFS_VISIT(i)
+            }
+
+        }
         return result;
     }
 
