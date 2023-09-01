@@ -1,7 +1,7 @@
 import { GraphWithAdjacencyList, GraphWithAdjacencyList2 } from "./component/GraphWithAdjacencyList";
 
 const directed = false;
-const nodes = [0, 1, 2, 3, 4];
+const nodes = [0, 1, 2, 3, 4, 5];
 const edges = [
     {
         node1: 0,
@@ -41,8 +41,9 @@ edges.forEach(edge => {
     graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
 });
 
-console.log(graphWithAdjacencyList.print());
-console.log(graphWithAdjacencyList.BFS(0));
+// console.log(graphWithAdjacencyList.print());
+// console.log(graphWithAdjacencyList.BFS(0));
+console.log(graphWithAdjacencyList.DFS(0));
 
 
 

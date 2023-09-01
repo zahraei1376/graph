@@ -16,25 +16,6 @@ export class GraphWithAdjacencyList {
             this.adjacencyLists[node2].push(node1);
         }
     }
-    BFS = (start) => {
-        const queue = [start];
-        const result = [];
-        const visited = {};
-        let currentVertex;
-        visited[start] = true;
-        while (queue.length) {
-            currentVertex = queue.shift();
-            result.push(currentVertex);
-            console.log(currentVertex);
-            this.adjacencyLists[currentVertex].forEach((neighbor) => {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    queue.push(neighbor);
-                }
-            });
-        }
-        return result;
-    }
 
     print = () => {
         let result = ``;
@@ -77,6 +58,24 @@ export class GraphWithAdjacencyList2 {
                 }
             })
         }
+        return result;
+    }
+
+
+
+    DFS = (startNode) => {
+        const visitedNodes = [];
+        let result = ``;
+        const DFS_VISIT = (node) => {
+            if (node == null) return;
+            visitedNodes[node] = true;
+            result += node;
+            this.adjacencyLists[node].forEach(connectNode => {
+                if (!visitedNodes[connectNode]) DFS_VISIT(connectNode);
+            });
+        }
+
+        DFS_VISIT(startNode);
         return result;
     }
 
