@@ -34,16 +34,29 @@ const edges = [
         node2: 2,
     },
 ];
+/////////////////////////////////////////////////////
+// const graphWithAdjacencyList = new GraphWithAdjacencyList2(nodes.length);
 
-const graphWithAdjacencyList = new GraphWithAdjacencyList2(nodes.length);
+// edges.forEach(edge => {
+//     graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
+// });
+
+// console.log(graphWithAdjacencyList.print());
+// console.log(graphWithAdjacencyList.BFS(0));
+// console.log(graphWithAdjacencyList.DFS(0));
+///////////////////////////////////////////////////
+const graphWithAdjacencyList = new GraphWithAdjacencyList();
+
+nodes.forEach(node => {
+    graphWithAdjacencyList.addAdjacency(node);
+});
 
 edges.forEach(edge => {
     graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
 });
 
-// console.log(graphWithAdjacencyList.print());
-// console.log(graphWithAdjacencyList.BFS(0));
-console.log(graphWithAdjacencyList.DFS(0));
+console.log(graphWithAdjacencyList.print());
+console.log(graphWithAdjacencyList.DFS());
 
 
 
