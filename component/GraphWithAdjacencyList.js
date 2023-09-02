@@ -25,17 +25,38 @@ export class GraphWithAdjacencyList {
         return result;
     }
 
-    DFS = () => {
+    dfsRecursive(node, visitedNodes) {
+        visitedNodes[node] = true;
+        for (const neighbor of this.adjacencyLists[node]) {
+            if (!visitedNodes[neighbor]) this.dfsRecursive(neighbor, visitedNodes);
+
+        }
+    }
+
+    findConnectedComponents = () => {
+        const visitedNodes = [];
+        let count = 0;
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                count++;
+                this.dfsRecursive(i, visitedNodes);
+            }
+
+        }
+        return count;
+    }
+
+    dfs = () => {
         const visitedNodes = [];
         let result = ``;
 
-        const DFS_VISIT = (node) => {
+        const dfsVisit = (node) => {
             const neighbors = this.adjacencyLists[node];
             for (let j = 0; j < neighbors.length; j++) {
                 if (!visitedNodes[neighbors[j]]) {
                     result += neighbors[j];
                     visitedNodes[neighbors[j]] = true;
-                    DFS_VISIT(neighbors[j])
+                    dfsVisit(neighbors[j])
                 }
             }
         }
@@ -44,7 +65,7 @@ export class GraphWithAdjacencyList {
             if (!visitedNodes[i]) {
                 visitedNodes[i] = true;
                 result += "\n" + i;
-                DFS_VISIT(i);
+                dfsVisit(i);
             }
         }
 
@@ -69,7 +90,7 @@ export class GraphWithAdjacencyList2 {
 
 
 
-    BFS = (startNode) => {
+    bfs = (startNode) => {
         const queue = [startNode];
         const visitedNodes = [];
         visitedNodes[startNode] = true;
@@ -89,23 +110,23 @@ export class GraphWithAdjacencyList2 {
 
 
 
-    DFS = (startNode) => {
+    dfs = (startNode) => {
         const visitedNodes = [];
         let result = ``;
-        const DFS_VISIT = (node) => {
+        const dfsVisit = (node) => {
             if (node == null) return;
             visitedNodes[node] = true;
             result += node;
             this.adjacencyLists[node].forEach(connectNode => {
-                if (!visitedNodes[connectNode]) DFS_VISIT(connectNode);
+                if (!visitedNodes[connectNode]) dfsVisit(connectNode);
             });
         }
 
-        DFS_VISIT(startNode);
+        dfsVisit(startNode);
         //If the graph is not connected or if there is no edge to a certain vertex in the directed graph, check it as well.
         for (let i = 0; i < Array.from(this.adjacencyLists).length; i++) {
             if (!visitedNodes[i]) {
-                DFS_VISIT(i)
+                dfsVisit(i)
             }
 
         }

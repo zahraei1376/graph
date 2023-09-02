@@ -42,8 +42,8 @@ const edges = [
 // });
 
 // console.log(graphWithAdjacencyList.print());
-// console.log(graphWithAdjacencyList.BFS(0));
-// console.log(graphWithAdjacencyList.DFS(0));
+// console.log(graphWithAdjacencyList.bfs(0));
+// console.log(graphWithAdjacencyList.dfs(0));
 ///////////////////////////////////////////////////
 const graphWithAdjacencyList = new GraphWithAdjacencyList();
 
@@ -56,7 +56,8 @@ edges.forEach(edge => {
 });
 
 console.log(graphWithAdjacencyList.print());
-console.log(graphWithAdjacencyList.DFS());
+console.log(graphWithAdjacencyList.dfs());
+console.log(graphWithAdjacencyList.findConnectedComponents())
 
 
 
