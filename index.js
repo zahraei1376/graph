@@ -80,7 +80,8 @@ console.log(graphWithAdjacencyList.dfs());
 console.log(graphWithAdjacencyList.dfsNonRecursive());
 console.log(graphWithAdjacencyList.bfs());
 console.log(graphWithAdjacencyList.bfsNonRecursive());
-console.log(graphWithAdjacencyList.findConnectedComponents())
+console.log(graphWithAdjacencyList.findConnectedComponents());
+console.log(graphWithAdjacencyList.topology());
 
 
 

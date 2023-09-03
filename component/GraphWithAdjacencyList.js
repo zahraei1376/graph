@@ -126,6 +126,30 @@ export class GraphWithAdjacencyList {
         }
         return result;
     }
+
+    topologyDfs = (vertex, visitedNodes, stack) => {
+        visitedNodes[vertex] = true;
+        const adjacencyListVertex = this.adjacencyLists[vertex];
+        for (let i = 0; i < adjacencyListVertex?.length; i++) {
+            const neighbor = adjacencyListVertex[i];
+            if (!visitedNodes[neighbor]) {
+                this.topologyDfs(neighbor, visitedNodes, stack);
+            }
+        }
+        stack.push(vertex);
+    }
+
+    topology = () => {
+        const visitedNodes = [];
+        const stack = [];
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                this.topologyDfs(i, visitedNodes, stack);
+            }
+
+        }
+        return stack.reverse();
+    }
 }
 
 export class GraphWithAdjacencyList2 {
