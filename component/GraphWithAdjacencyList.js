@@ -46,7 +46,7 @@ export class GraphWithAdjacencyList {
         return count;
     }
 
-    dfsWithoutRecursive = (startNode = 0) => {
+    dfsNonRecursive = (startNode = 0) => {
         const visitedNodes = [];
         const stack = [startNode];
         visitedNodes[startNode] = true;
@@ -61,6 +61,24 @@ export class GraphWithAdjacencyList {
                 }
             })
 
+        }
+        return result;
+    }
+
+    bfsNonRecursive = (startNode = 0) => {
+        const visitedNodes = [];
+        const queue = [startNode];
+        let result = ``;
+        visitedNodes[startNode] = true;
+        while (queue.length) {
+            const vertex = queue.shift();
+            result += vertex;
+            for (const neighbor of this.adjacencyLists[vertex]) {
+                if (!visitedNodes[neighbor]) {
+                    visitedNodes[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            }
         }
         return result;
     }
@@ -98,7 +116,7 @@ export class GraphWithAdjacencyList {
         let result = ``;
         while (queue.length) {
             let currentVisited = queue.shift();
-            result += currentVisited + " ";
+            result += currentVisited;
             this.adjacencyLists[currentVisited].forEach(connectNode => {
                 if (!visitedNodes[connectNode]) {
                     visitedNodes[connectNode] = true;

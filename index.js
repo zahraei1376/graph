@@ -77,8 +77,9 @@ edges.forEach(edge => {
 
 console.log(graphWithAdjacencyList.print());
 console.log(graphWithAdjacencyList.dfs());
-console.log(graphWithAdjacencyList.dfsWithoutRecursive());
+console.log(graphWithAdjacencyList.dfsNonRecursive());
 console.log(graphWithAdjacencyList.bfs());
+console.log(graphWithAdjacencyList.bfsNonRecursive());
 console.log(graphWithAdjacencyList.findConnectedComponents())
 
 
