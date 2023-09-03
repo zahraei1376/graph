@@ -46,6 +46,25 @@ export class GraphWithAdjacencyList {
         return count;
     }
 
+    dfsWithoutRecursive = (startNode = 0) => {
+        const visitedNodes = [];
+        const stack = [startNode];
+        visitedNodes[startNode] = true;
+        let result = ``;
+        while (stack.length) {
+            const vertex = stack.pop();
+            result += vertex;
+            this.adjacencyLists[vertex].forEach(neighbor => {
+                if (!visitedNodes[neighbor]) {
+                    visitedNodes[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            })
+
+        }
+        return result;
+    }
+
     dfs = () => {
         const visitedNodes = [];
         let result = ``;
@@ -71,6 +90,24 @@ export class GraphWithAdjacencyList {
 
         return result;
     }
+
+    bfs = (startNode = 0) => {
+        const queue = [startNode];
+        const visitedNodes = [];
+        visitedNodes[startNode] = true;
+        let result = ``;
+        while (queue.length) {
+            let currentVisited = queue.shift();
+            result += currentVisited + " ";
+            this.adjacencyLists[currentVisited].forEach(connectNode => {
+                if (!visitedNodes[connectNode]) {
+                    visitedNodes[connectNode] = true;
+                    queue.push(connectNode);
+                }
+            })
+        }
+        return result;
+    }
 }
 
 export class GraphWithAdjacencyList2 {
@@ -87,8 +124,6 @@ export class GraphWithAdjacencyList2 {
             this.adjacencyLists[node2].add(node1);
         }
     }
-
-
 
     bfs = (startNode) => {
         const queue = [startNode];
@@ -107,8 +142,6 @@ export class GraphWithAdjacencyList2 {
         }
         return result;
     }
-
-
 
     dfs = (startNode) => {
         const visitedNodes = [];

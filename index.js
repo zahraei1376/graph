@@ -1,7 +1,41 @@
 import { GraphWithAdjacencyList, GraphWithAdjacencyList2 } from "./component/GraphWithAdjacencyList";
 
-const directed = false;
-const nodes = [0, 1, 2, 3, 4, 5];
+const directed = true;
+// const nodes = [0, 1, 2, 3, 4, 5];
+// const edges = [
+//     {
+//         node1: 0,
+//         node2: 1,
+//     },
+//     {
+//         node1: 0,
+//         node2: 2,
+//     },
+//     {
+//         node1: 0,
+//         node2: 3,
+//     },
+//     {
+//         node1: 0,
+//         node2: 4,
+//     },
+//     {
+//         node1: 3,
+//         node2: 4,
+
+//     },
+//     {
+//         node1: 2,
+//         node2: 3,
+
+//     },
+//     {
+//         node1: 1,
+//         node2: 2,
+//     },
+// ];
+
+const nodes = [0, 1, 2, 3];
 const edges = [
     {
         node1: 0,
@@ -12,25 +46,11 @@ const edges = [
         node2: 2,
     },
     {
-        node1: 0,
+        node1: 1,
         node2: 3,
-    },
-    {
-        node1: 0,
-        node2: 4,
     },
     {
         node1: 3,
-        node2: 4,
-
-    },
-    {
-        node1: 2,
-        node2: 3,
-
-    },
-    {
-        node1: 1,
         node2: 2,
     },
 ];
@@ -57,6 +77,8 @@ edges.forEach(edge => {
 
 console.log(graphWithAdjacencyList.print());
 console.log(graphWithAdjacencyList.dfs());
+console.log(graphWithAdjacencyList.dfsWithoutRecursive());
+console.log(graphWithAdjacencyList.bfs());
 console.log(graphWithAdjacencyList.findConnectedComponents())
 
 
