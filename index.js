@@ -56,13 +56,13 @@ edges.forEach(edge => {
     graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
 });
 
-// console.log(graphWithAdjacencyList.print());
-// console.log(graphWithAdjacencyList.dfs());
-// console.log(graphWithAdjacencyList.dfsNonRecursive());
-// console.log(graphWithAdjacencyList.bfs());
-// console.log(graphWithAdjacencyList.bfsNonRecursive());
-// console.log(graphWithAdjacencyList.findConnectedComponents());
-// console.log(graphWithAdjacencyList.topology());
+console.log(graphWithAdjacencyList.print());
+console.log(graphWithAdjacencyList.dfs());
+console.log(graphWithAdjacencyList.dfsNonRecursive());
+console.log(graphWithAdjacencyList.bfs());
+console.log(graphWithAdjacencyList.bfsNonRecursive());
+console.log(graphWithAdjacencyList.findConnectedComponents());
+console.log(graphWithAdjacencyList.topology());
 console.log(graphWithAdjacencyList.topologyWithoutRecursive());
 
 

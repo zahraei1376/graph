@@ -179,6 +179,9 @@ export class GraphWithAdjacencyList {
                 }
             }
         }
+        if (result.length !== this.adjacencyLists.length) {
+            throw new Error('The graph has a cycle.');
+        }
 
         return result;
     }
