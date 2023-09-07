@@ -150,6 +150,38 @@ export class GraphWithAdjacencyList {
         }
         return stack.reverse();
     }
+
+    topologyWithoutRecursive = () => {
+        const degrees = new Array(this.adjacencyLists.length).fill(0);
+        const stack = [];
+        const result = [];
+
+        for (const adjacencyList of this.adjacencyLists) {
+            for (let i = 0; i < adjacencyList.length; i++) {
+                degrees[adjacencyList[i]]++;
+            }
+        }
+
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (degrees[i] === 0) {
+                stack.push(i);
+            }
+        }
+
+        while (stack.length > 0) {
+            const vertex = stack.pop();
+            result.push(vertex);
+            const neighbors = this.adjacencyLists[vertex];
+            for (const neighbor of neighbors) {
+                degrees[neighbor]--;
+                if (degrees[neighbor] === 0) {
+                    stack.push(neighbor);
+                }
+            }
+        }
+
+        return result;
+    }
 }
 
 export class GraphWithAdjacencyList2 {
