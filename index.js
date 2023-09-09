@@ -47,12 +47,14 @@ edges.forEach(edge => {
     graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
 });
 
-console.log(graphWithAdjacencyList.hasCircleInUndirectedGraph());
-console.log(graphWithAdjacencyList.hasCircleInUndirectedGraphRecursive());
-console.log(graphWithAdjacencyList.hasCircleInDirectedGraphRecursive());
-console.log(graphWithAdjacencyList.hasCircleInDirectedGraph());
+// console.log(graphWithAdjacencyList.hasCircleInUndirectedGraph());
+// console.log(graphWithAdjacencyList.hasCircleInUndirectedGraphRecursive());
+// console.log(graphWithAdjacencyList.hasCircleInDirectedGraphRecursive());
+// console.log(graphWithAdjacencyList.hasCircleInDirectedGraph());
+
+console.log(graphWithAdjacencyList.stronglyConnectedComponents());
 // console.log(graphWithAdjacencyList.print());
-console.log(graphWithAdjacencyList.dfs());
+// console.log(graphWithAdjacencyList.dfs());
 // console.log(graphWithAdjacencyList.dfsNonRecursive());
 // console.log(graphWithAdjacencyList.bfs());
 // console.log(graphWithAdjacencyList.bfsNonRecursive());

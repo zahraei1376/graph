@@ -300,7 +300,52 @@ export class GraphWithAdjacencyList {
     }
 
     stronglyConnectedComponents = () => {
+        const dfsRun = this.dfs();
+        console.log(dfsRun);
+        const transposedGraph = [];
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            const neighbors = this.adjacencyLists[i];
+            for (const neighbor of neighbors) {
+                if (!transposedGraph[neighbor]) {
+                    transposedGraph[neighbor] = [i];
+                } else {
+                    transposedGraph[neighbor].push(i);
+                }
+            }
 
+            if (neighbors.length === 0) {
+                transposedGraph[i] = [];
+            }
+        }
+
+        const dfsVisitOnstronglyConnectedComponents = (vertex, visitedNodes, count) => {
+            // count++;
+            console.log(transposedGraph);
+            console.log(vertex);
+            visitedNodes[vertex] = true;
+            const neighbors = transposedGraph[vertex];
+            // console.log(count);
+            for (const neighbor of neighbors) {
+                if (!visitedNodes[neighbor]) {
+                    dfsVisitOnstronglyConnectedComponents(neighbor, visitedNodes, count);
+                }
+            }
+            // return count;
+        }
+
+        const dfsOnstronglyConnectedComponents = () => {
+            const visitedNodes = new Array(transposedGraph.length).fill(false);
+            let count = 0;
+            for (const vertex of dfsRun) {
+                if (!visitedNodes[vertex]) {
+                    count++;
+                    dfsVisitOnstronglyConnectedComponents(vertex, visitedNodes, count);
+                }
+            }
+            return count;
+        }
+
+        return dfsOnstronglyConnectedComponents();
     }
 }
 
