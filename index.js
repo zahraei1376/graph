@@ -85,7 +85,7 @@ edges.forEach(edge => {
 });
 
 console.log(graphWithAdjacencyList.hasCircleInUndirectedGraph());
-
+console.log(graphWithAdjacencyList.hasCircleInUndirectedGraphRecursive());
 // console.log(graphWithAdjacencyList.print());
 // console.log(graphWithAdjacencyList.dfs());
 // console.log(graphWithAdjacencyList.dfsNonRecursive());

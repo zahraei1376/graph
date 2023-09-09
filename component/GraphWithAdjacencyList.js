@@ -186,7 +186,7 @@ export class GraphWithAdjacencyList {
         return result;
     }
 
-    hasCircleInUndirectedGraph = () => {
+    hasCircleInUndirectedGraphRecursive = () => {
         const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
 
         const isCircle = (vertex, parent) => {
@@ -213,6 +213,26 @@ export class GraphWithAdjacencyList {
             }
         }
 
+        return false;
+    }
+
+    hasCircleInUndirectedGraph = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+        const parents = new Array(this.adjacencyLists.length).fill(null);
+
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            visitedNodes[i] = true;
+            const neighbors = this.adjacencyLists[i];
+            for (let j = 0; j < neighbors.length; j++) {
+                parents[neighbors[j]] = i;
+                if (visitedNodes[neighbors[j]] && parents[i] && parents[i] !== neighbors[j]) {
+                    return true;
+                } else if (!visitedNodes[neighbors[j]]) {
+                    visitedNodes[neighbors[j]] = true;
+                }
+            }
+
+        }
         return false;
     }
 }
