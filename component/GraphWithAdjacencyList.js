@@ -85,13 +85,13 @@ export class GraphWithAdjacencyList {
 
     dfs = () => {
         const visitedNodes = [];
-        let result = ``;
+        const result = [];
 
         const dfsVisit = (node) => {
             const neighbors = this.adjacencyLists[node];
             for (let j = 0; j < neighbors.length; j++) {
                 if (!visitedNodes[neighbors[j]]) {
-                    result += neighbors[j];
+                    result.push(neighbors[j]);
                     visitedNodes[neighbors[j]] = true;
                     dfsVisit(neighbors[j])
                 }
@@ -101,7 +101,7 @@ export class GraphWithAdjacencyList {
         for (let i = 0; i < this.adjacencyLists.length; i++) {
             if (!visitedNodes[i]) {
                 visitedNodes[i] = true;
-                result += "\n" + i;
+                result.push(i);
                 dfsVisit(i);
             }
         }
@@ -297,6 +297,10 @@ export class GraphWithAdjacencyList {
         }
 
         return false;
+    }
+
+    stronglyConnectedComponents = () => {
+
     }
 }
 
