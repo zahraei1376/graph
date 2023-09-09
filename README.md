@@ -1,5 +1,8 @@
 ## GRAPH
 
 Graph implementation with adjacency lists and its algorithms:
-- BFS
-- DFS
+- bfs
+- dfs
+- Connected component
+- topology
+- circle
