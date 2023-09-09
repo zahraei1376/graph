@@ -185,6 +185,36 @@ export class GraphWithAdjacencyList {
 
         return result;
     }
+
+    hasCircleInUndirectedGraph = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+
+        const isCircle = (vertex, parent) => {
+            visitedNodes[vertex] = true;
+            const neighbors = this.adjacencyLists[vertex];
+            let flag = false;
+            for (let i = 0; i < neighbors.length; i++) {
+                if (visitedNodes[neighbors[i]] && parent !== null && neighbors[i] !== parent) {
+                    return true;
+                } if (!visitedNodes[neighbors[i]]) {
+                    flag = isCircle(neighbors[i], vertex);
+                    if (flag) return true;
+                }
+            }
+
+            return false;
+        }
+
+        let flag = false;
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                flag = isCircle(i, null);
+                if (flag) return flag;
+            }
+        }
+
+        return false;
+    }
 }
 
 export class GraphWithAdjacencyList2 {
