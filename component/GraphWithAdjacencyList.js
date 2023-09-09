@@ -196,7 +196,8 @@ export class GraphWithAdjacencyList {
             for (let i = 0; i < neighbors.length; i++) {
                 if (visitedNodes[neighbors[i]] && parent !== null && neighbors[i] !== parent) {
                     return true;
-                } if (!visitedNodes[neighbors[i]]) {
+                }
+                else if (!visitedNodes[neighbors[i]]) {
                     flag = isCircle(neighbors[i], vertex);
                     if (flag) return true;
                 }
@@ -231,8 +232,37 @@ export class GraphWithAdjacencyList {
                     visitedNodes[neighbors[j]] = true;
                 }
             }
-
         }
+
+        return false;
+    }
+
+    hasCircleInDirectedGraphRecursive = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+
+        const isCircle = (vertex) => {
+            visitedNodes[vertex] = true;
+            const neighbors = this.adjacencyLists[vertex];
+            let flag = false;
+            for (let i = 0; i < neighbors.length; i++) {
+                if (visitedNodes[neighbors[i]]) return true
+                else {
+                    flag = isCircle(neighbors[i]);
+                    if (flag) return flag;
+                }
+            }
+            visitedNodes[vertex] = false;
+            return false;
+        }
+
+        let flag = false;
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                flag = isCircle(i);
+                if (flag) return true;
+            }
+        }
+
         return false;
     }
 }

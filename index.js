@@ -1,6 +1,6 @@
 import { GraphWithAdjacencyList, GraphWithAdjacencyList2 } from "./component/GraphWithAdjacencyList";
 
-const directed = false;
+const directed = true;
 
 // const nodes = [0, 1, 2, 3, 4];
 // const edges = [
@@ -64,14 +64,14 @@ const edges = [
         node1: 3,
         node2: 4,
     },
-    {
-        node1: 4,
-        node2: 2,
-    },
-    {
-        node1: 4,
-        node2: 0,
-    },
+    // {
+    //     node1: 4,
+    //     node2: 2,
+    // },
+    // {
+    //     node1: 4,
+    //     node2: 0,
+    // },
 ];
 ///////////////////////////////////////////////////
 const graphWithAdjacencyList = new GraphWithAdjacencyList();
@@ -86,6 +86,7 @@ edges.forEach(edge => {
 
 console.log(graphWithAdjacencyList.hasCircleInUndirectedGraph());
 console.log(graphWithAdjacencyList.hasCircleInUndirectedGraphRecursive());
+console.log(graphWithAdjacencyList.hasCircleInDirectedGraphRecursive());
 // console.log(graphWithAdjacencyList.print());
 // console.log(graphWithAdjacencyList.dfs());
 // console.log(graphWithAdjacencyList.dfsNonRecursive());
