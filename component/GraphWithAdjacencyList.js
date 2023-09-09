@@ -272,6 +272,32 @@ export class GraphWithAdjacencyList {
 
         return false;
     }
+
+    hasCircleInDirectedGraph = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+        const stack = [];
+
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                stack.push(i);
+                while (stack.length) {
+                    let currentVisited = stack.pop();
+                    visitedNodes[currentVisited] = true;
+                    let neighbors = this.adjacencyLists[currentVisited];
+                    for (const neighbor of neighbors) {
+                        if (visitedNodes[neighbor]) return true;
+                        else {
+                            stack.push(neighbor);
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        return false;
+    }
 }
 
 export class GraphWithAdjacencyList2 {
