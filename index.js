@@ -62,16 +62,24 @@ const edges = [
     },
     {
         node1: 3,
+        node2: 0,
+    },
+    {
+        node1: 2,
         node2: 4,
     },
-    // {
-    //     node1: 4,
-    //     node2: 2,
-    // },
-    // {
-    //     node1: 4,
-    //     node2: 0,
-    // },
+    {
+        node1: 3,
+        node2: 4,
+    },
+    {
+        node1: 4,
+        node2: 5,
+    },
+    {
+        node1: 5,
+        node2: 0,
+    },
 ];
 ///////////////////////////////////////////////////
 const graphWithAdjacencyList = new GraphWithAdjacencyList();

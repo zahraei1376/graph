@@ -220,16 +220,23 @@ export class GraphWithAdjacencyList {
     hasCircleInUndirectedGraph = () => {
         const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
         const parents = new Array(this.adjacencyLists.length).fill(null);
+        const stack = [];
 
         for (let i = 0; i < this.adjacencyLists.length; i++) {
-            visitedNodes[i] = true;
-            const neighbors = this.adjacencyLists[i];
-            for (let j = 0; j < neighbors.length; j++) {
-                parents[neighbors[j]] = i;
-                if (visitedNodes[neighbors[j]] && parents[i] && parents[i] !== neighbors[j]) {
-                    return true;
-                } else if (!visitedNodes[neighbors[j]]) {
-                    visitedNodes[neighbors[j]] = true;
+            if (!visitedNodes[i]) {
+                stack.push(i);
+                while (stack.length) {
+                    let currentVisited = stack.pop();
+                    visitedNodes[currentVisited] = true;
+                    const neighbors = this.adjacencyLists[currentVisited];
+                    for (let j = 0; j < neighbors.length; j++) {
+                        parents[neighbors[j]] = currentVisited;
+                        if (visitedNodes[neighbors[j]] && parents[currentVisited] && parents[currentVisited] !== neighbors[j]) {
+                            return true;
+                        } else if (!visitedNodes[neighbors[j]]) {
+                            stack.push(neighbors[j]);
+                        }
+                    }
                 }
             }
         }
