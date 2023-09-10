@@ -300,53 +300,107 @@ export class GraphWithAdjacencyList {
     }
 
     stronglyConnectedComponents = () => {
-        const dfsRun = this.dfs();
-        console.log(dfsRun);
-        const transposedGraph = [];
-        for (let i = 0; i < this.adjacencyLists.length; i++) {
-            const neighbors = this.adjacencyLists[i];
-            for (const neighbor of neighbors) {
-                if (!transposedGraph[neighbor]) {
-                    transposedGraph[neighbor] = [i];
-                } else {
-                    transposedGraph[neighbor].push(i);
-                }
-            }
 
-            if (neighbors.length === 0) {
-                transposedGraph[i] = [];
-            }
-        }
-
-        const dfsVisitOnstronglyConnectedComponents = (vertex, visitedNodes, count) => {
-            // count++;
-            console.log(transposedGraph);
-            console.log(vertex);
+        const dfsVisitor = (vertex, visitedNodes, stack) => {
             visitedNodes[vertex] = true;
-            const neighbors = transposedGraph[vertex];
-            // console.log(count);
-            for (const neighbor of neighbors) {
-                if (!visitedNodes[neighbor]) {
-                    dfsVisitOnstronglyConnectedComponents(neighbor, visitedNodes, count);
+            const neighbors = this.adjacencyLists[vertex];
+            for (let i = 0; i < neighbors.length; i++) {
+                if (!visitedNodes[neighbors[i]]) {
+                    dfsVisitor(neighbors[i], visitedNodes, stack);
                 }
+
             }
-            // return count;
+            stack.push(vertex);
         }
 
-        const dfsOnstronglyConnectedComponents = () => {
-            const visitedNodes = new Array(transposedGraph.length).fill(false);
-            let count = 0;
-            for (const vertex of dfsRun) {
-                if (!visitedNodes[vertex]) {
-                    count++;
-                    dfsVisitOnstronglyConnectedComponents(vertex, visitedNodes, count);
+        const dfs = () => {
+            const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+            const stack = [];
+            for (let i = 0; i < this.adjacencyLists.length; i++) {
+                if (!visitedNodes[i]) {
+                    dfsVisitor(i, visitedNodes, stack);
                 }
             }
-            return count;
+            return stack;
         }
 
-        return dfsOnstronglyConnectedComponents();
+        const transposed = () => {
+            const transposedGraph = [];
+            for (let i = 0; i < this.adjacencyLists.length; i++) {
+                if (!transposedGraph[i]) {
+                    transposedGraph[i] = [];
+                }
+                const neighbors = this.adjacencyLists[i];
+                for (let j = 0; j < neighbors.length; j++) {
+                    if (!transposedGraph[neighbors[j]]) {
+                        transposedGraph[neighbors[j]] = [i];
+                    } else {
+                        transposedGraph[neighbors[j]].push(i);
+                    }
+                }
+            }
+            return transposedGraph;
+        }
+
+        // const orderOfEndingInDfs = dfs();
+        // transposed();
     }
+
+    // stronglyConnectedComponents = () => {
+    //     const dfsRun = this.dfs();
+
+    //     const transposedGraph = [];
+    //     for (let i = 0; i < this.adjacencyLists.length; i++) {
+    //         const neighbors = this.adjacencyLists[i];
+    //         for (const neighbor of neighbors) {
+    //             if (!transposedGraph[neighbor]) {
+    //                 transposedGraph[neighbor] = [i];
+    //             } else {
+    //                 transposedGraph[neighbor].push(i);
+    //             }
+    //         }
+
+    //         if (neighbors.length === 0) {
+    //             transposedGraph[i] = [];
+    //         }
+    //     }
+
+    //     const dfsVisitOnstronglyConnectedComponents = (vertex, visitedNodes, count) => {
+    //         // count++;
+    //         console.log("vertex =>", vertex, "count =>", count);
+    //         visitedNodes[vertex] = true;
+    //         const neighbors = transposedGraph[vertex];
+    //         console.log("neighbors", neighbors);
+    //         // if (neighbors.length > 0) {
+    //         let temp = 0;
+    //         for (const neighbor of neighbors) {
+    //             if (!visitedNodes[neighbor]) {
+    //                 temp = dfsVisitOnstronglyConnectedComponents(neighbor, visitedNodes, count);
+    //             }
+    //         }
+    //         // }
+    //         temp++;
+    //         return temp;
+    //         // return count;
+    //     }
+
+    //     const dfsOnstronglyConnectedComponents = () => {
+    //         const visitedNodes = new Array(transposedGraph.length).fill(false);
+    //         let count = 0;
+    //         console.log(dfsRun);
+    //         for (const vertex of dfsRun) {
+    //             console.log("vertexxx", vertex);
+    //             if (!visitedNodes[vertex]) {
+    //                 // count++;
+    //                 console.log("vertexxrrrr", vertex);
+    //                 dfsVisitOnstronglyConnectedComponents(vertex, visitedNodes, count);
+    //             }
+    //         }
+    //         return count;
+    //     }
+
+    //     return dfsOnstronglyConnectedComponents();
+    // }
 }
 
 export class GraphWithAdjacencyList2 {

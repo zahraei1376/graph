@@ -1,7 +1,7 @@
 import { GraphWithAdjacencyList } from "./component/GraphWithAdjacencyList";
 
 const directed = true;
-const nodes = [0, 1, 2, 3, 4, 5, 6];
+const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
 const edges = [
     {
         node1: 0,
@@ -17,23 +17,19 @@ const edges = [
     },
     {
         node1: 3,
-        node2: 0,
-    },
-    {
-        node1: 2,
         node2: 4,
     },
     {
-        node1: 3,
-        node2: 4,
-    },
-    {
-        node1: 4,
+        node1: 1,
         node2: 5,
     },
     {
         node1: 5,
-        node2: 0,
+        node2: 6,
+    },
+    {
+        node1: 6,
+        node2: 7,
     },
 ];
 ///////////////////////////////////////////////////
