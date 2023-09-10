@@ -17,10 +17,22 @@ const edges = [
     },
     {
         node1: 3,
+        node2: 2,
+    },
+    {
+        node1: 3,
         node2: 4,
     },
     {
-        node1: 1,
+        node1: 4,
+        node2: 4,
+    },
+    {
+        node1: 5,
+        node2: 4,
+    },
+    {
+        node1: 2,
         node2: 5,
     },
     {
@@ -29,7 +41,23 @@ const edges = [
     },
     {
         node1: 6,
+        node2: 5,
+    },
+    {
+        node1: 1,
+        node2: 6,
+    },
+    {
+        node1: 7,
+        node2: 6,
+    },
+    {
+        node1: 1,
         node2: 7,
+    },
+    {
+        node1: 7,
+        node2: 0,
     },
 ];
 ///////////////////////////////////////////////////
