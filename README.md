@@ -6,3 +6,4 @@ Graph implementation with adjacency lists and its algorithms:
 - Connected component
 - topology
 - circle
+- strongly connected
