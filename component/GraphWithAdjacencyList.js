@@ -300,17 +300,16 @@ export class GraphWithAdjacencyList {
     }
 
     stronglyConnectedComponents = () => {
-        const dfsVisitor = (vertex, visitedNodes, stack) => {
+        const dfsVisitor = (vertex, visitedNodes, stack, adjacencyLists) => {
             visitedNodes[vertex] = true;
-            const neighbors = this.adjacencyLists[vertex];
+            const neighbors = adjacencyLists[vertex];
             for (let i = 0; i < neighbors.length; i++) {
                 if (!visitedNodes[neighbors[i]]) {
-                    dfsVisitor(neighbors[i], visitedNodes, stack);
+                    dfsVisitor(neighbors[i], visitedNodes, stack, adjacencyLists);
                 }
 
             }
             stack.push(vertex);
-            console.log(stack);
         }
 
         const dfs = () => {
@@ -318,7 +317,7 @@ export class GraphWithAdjacencyList {
             const stack = [];
             for (let i = 0; i < this.adjacencyLists.length; i++) {
                 if (!visitedNodes[i]) {
-                    dfsVisitor(i, visitedNodes, stack);
+                    dfsVisitor(i, visitedNodes, stack, this.adjacencyLists);
                 }
             }
             return stack;
@@ -343,28 +342,25 @@ export class GraphWithAdjacencyList {
         }
 
         const orderOfEndingInDfs = dfs().reverse();
-        console.log("orderOfEndingInDfs", orderOfEndingInDfs);
         const transposedGraph = transposed();
         const visitedNodes = new Array(transposedGraph.length).fill(false);
         const stronglyConnected = [];
 
-        const dfsVisitor2 = (vertex, visitedNodes, stack) => {
-            visitedNodes[vertex] = true;
-            const neighbors = transposedGraph[vertex];
-            console.log("vertex", vertex, "neighbors", neighbors);
-            for (let i = 0; i < neighbors.length; i++) {
-                if (!visitedNodes[neighbors[i]]) {
-                    dfsVisitor2(neighbors[i], visitedNodes, stack);
-                }
-            }
-            stack.push(vertex);
-        }
+        // const dfsVisitor2 = (vertex, visitedNodes, stack) => {
+        //     visitedNodes[vertex] = true;
+        //     const neighbors = transposedGraph[vertex];
+        //     for (let i = 0; i < neighbors.length; i++) {
+        //         if (!visitedNodes[neighbors[i]]) {
+        //             dfsVisitor2(neighbors[i], visitedNodes, stack);
+        //         }
+        //     }
+        //     stack.push(vertex);
+        // }
 
         for (const vertex of orderOfEndingInDfs) {
             if (!visitedNodes[vertex]) {
                 const scc = []
-                dfsVisitor2(vertex, visitedNodes, scc);
-                console.log("scc", scc);
+                dfsVisitor(vertex, visitedNodes, scc, transposedGraph);
                 stronglyConnected.push(scc);
             }
         }
