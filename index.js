@@ -1,6 +1,5 @@
-import { GraphWithAdjacencyList } from "./component/GraphWithAdjacencyList";
+import DirectedGraph from "./GraphWithAdjacencyList/DirectedGraph";
 
-const directed = true;
 const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
 const edges = [
     {
@@ -61,14 +60,14 @@ const edges = [
     },
 ];
 ///////////////////////////////////////////////////
-const graphWithAdjacencyList = new GraphWithAdjacencyList();
+const graph = new DirectedGraph();
 
 nodes.forEach(node => {
-    graphWithAdjacencyList.addAdjacency(node);
+    graph.addAdjacency(node);
 });
 
 edges.forEach(edge => {
-    graphWithAdjacencyList.addEdgeToAdjacency(edge.node1, edge.node2, directed);
+    graph.addEdgeToAdjacency(edge.node1, edge.node2);
 });
 
 // console.log(graphWithAdjacencyList.hasCircleInUndirectedGraph());
@@ -76,7 +75,7 @@ edges.forEach(edge => {
 // console.log(graphWithAdjacencyList.hasCircleInDirectedGraphRecursive());
 // console.log(graphWithAdjacencyList.hasCircleInDirectedGraph());
 
-console.log(graphWithAdjacencyList.stronglyConnectedComponents());
+console.log(graph.stronglyConnectedComponents());
 // console.log(graphWithAdjacencyList.print());
 // console.log(graphWithAdjacencyList.dfs());
 // console.log(graphWithAdjacencyList.dfsNonRecursive());
@@ -84,7 +83,7 @@ console.log(graphWithAdjacencyList.stronglyConnectedComponents());
 // console.log(graphWithAdjacencyList.bfsNonRecursive());
 // console.log(graphWithAdjacencyList.findConnectedComponents());
 // console.log(graphWithAdjacencyList.topology());
-// console.log(graphWithAdjacencyList.topologyWithoutRecursive());
+// console.log(graph.topologyWithoutRecursive());
 
 
 
