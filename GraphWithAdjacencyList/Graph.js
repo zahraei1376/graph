@@ -127,68 +127,6 @@ export class GraphWithAdjacencyList {
         return result;
     }
 
-    ///undirected
-
-    hasCircleInUndirectedGraphRecursive = () => {
-        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
-
-        const isCircle = (vertex, parent) => {
-            visitedNodes[vertex] = true;
-            const neighbors = this.adjacencyLists[vertex];
-            let flag = false;
-            for (let i = 0; i < neighbors.length; i++) {
-                if (visitedNodes[neighbors[i]] && parent !== null && neighbors[i] !== parent) {
-                    return true;
-                }
-                else if (!visitedNodes[neighbors[i]]) {
-                    flag = isCircle(neighbors[i], vertex);
-                    if (flag) return true;
-                }
-            }
-
-            return false;
-        }
-
-        let flag = false;
-        for (let i = 0; i < this.adjacencyLists.length; i++) {
-            if (!visitedNodes[i]) {
-                flag = isCircle(i, null);
-                if (flag) return flag;
-            }
-        }
-
-        return false;
-    }
-
-    hasCircleInUndirectedGraph = () => {
-        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
-        const parents = new Array(this.adjacencyLists.length).fill(null);
-        const stack = [];
-
-        for (let i = 0; i < this.adjacencyLists.length; i++) {
-            if (!visitedNodes[i]) {
-                stack.push(i);
-                while (stack.length) {
-                    let currentVisited = stack.pop();
-                    visitedNodes[currentVisited] = true;
-                    const neighbors = this.adjacencyLists[currentVisited];
-                    for (let j = 0; j < neighbors.length; j++) {
-                        parents[neighbors[j]] = currentVisited;
-                        if (visitedNodes[neighbors[j]] && parents[currentVisited] && parents[currentVisited] !== neighbors[j]) {
-                            return true;
-                        } else if (!visitedNodes[neighbors[j]]) {
-                            stack.push(neighbors[j]);
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-
-
     // stronglyConnectedComponents = () => {
     //     const dfsRun = this.dfs();
 
