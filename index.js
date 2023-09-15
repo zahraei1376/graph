@@ -15,18 +15,18 @@ const edges = [
         node1: 2,
         node2: 3,
     },
-    {
-        node1: 3,
-        node2: 2,
-    },
+    // {
+    //     node1: 3,
+    //     node2: 2,
+    // },
     {
         node1: 3,
         node2: 4,
     },
-    {
-        node1: 4,
-        node2: 4,
-    },
+    // {
+    //     node1: 4,
+    //     node2: 4,
+    // },
     {
         node1: 5,
         node2: 4,
@@ -39,10 +39,10 @@ const edges = [
         node1: 5,
         node2: 6,
     },
-    {
-        node1: 6,
-        node2: 5,
-    },
+    // {
+    //     node1: 6,
+    //     node2: 5,
+    // },
     {
         node1: 1,
         node2: 6,
@@ -61,17 +61,29 @@ const edges = [
     },
 ];
 
-const directedGraph = new DirectedGraph();
+// const directedGraph = new DirectedGraph();
+
+// nodes.forEach(node => {
+//     directedGraph.addAdjacency(node);
+// });
+
+// edges.forEach(edge => {
+//     directedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
+// });
+
+// console.log(directedGraph.findConnectedComponents());
+//////////////////////////////////////
+const unDirectedGraph = new UnDirectedGraph();
 
 nodes.forEach(node => {
-    directedGraph.addAdjacency(node);
+    unDirectedGraph.addAdjacency(node);
 });
 
 edges.forEach(edge => {
-    directedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
+    unDirectedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
 });
 
-console.log(directedGraph.findConnectedComponents());
+console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
 
 
 

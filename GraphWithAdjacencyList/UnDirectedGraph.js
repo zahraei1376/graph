@@ -71,8 +71,20 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         return false;
     }
 
-    checkingِDisconnectOfGraph = () => {
+    checkingConnectOfGraph = (graph = this.adjacencyLists) => {
+        const count = this.findConnectedComponents(graph);
+        if (count === 1) return true;
+        return false
+    }
 
+    removeEdge = (node1, node2, graph = this.adjacencyLists) => {
+        const index1 = graph[node1].indexOf(node2);
+        const index2 = graph[node2].indexOf(node1);
+
+        if (index1 !== -1 && index2 !== -1) {
+            graph[node1].splice(index1, 1);
+            graph[node2].splice(index2, 1);
+        }
     }
 
     alticulationPointWithRomoveEdges = () => {
