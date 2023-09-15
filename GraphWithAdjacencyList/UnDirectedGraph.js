@@ -87,6 +87,17 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         }
     }
 
+    removeVertex = (nodeForDelete, graph = this.adjacencyLists) => {
+        const findIndexNodeForDelete = graph.indexOf(nodeForDelete);
+        if (findIndexNodeForDelete > -1) {
+            graph.splice(nodeForDelete, 1);
+
+            for (const vertex of graph) {
+                this.removeEdge(vertex, nodeForDelete, graph);
+            }
+        }
+    }
+
     alticulationPointWithRomoveEdges = () => {
 
     }
