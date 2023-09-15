@@ -70,6 +70,14 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
 
         return false;
     }
+
+    checkingِDisconnectOfGraph = () => {
+
+    }
+
+    alticulationPointWithRomoveEdges = () => {
+
+    }
 }
 
 export default UnDirectedGraph;

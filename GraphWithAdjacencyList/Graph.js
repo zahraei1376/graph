@@ -25,21 +25,22 @@ export class GraphWithAdjacencyList {
         return result;
     }
 
-    dfsRecursive(node, visitedNodes) {
-        visitedNodes[node] = true;
-        for (const neighbor of this.adjacencyLists[node]) {
-            if (!visitedNodes[neighbor]) this.dfsRecursive(neighbor, visitedNodes);
+    findConnectedComponents = (graph = this.adjacencyLists) => {
 
+        const dfsRecursive = (node, visitedNodes) => {
+            visitedNodes[node] = true;
+            for (const neighbor of graph[node]) {
+                if (!visitedNodes[neighbor]) dfsRecursive(neighbor, visitedNodes);
+            }
         }
-    }
 
-    findConnectedComponents = () => {
         const visitedNodes = [];
         let count = 0;
-        for (let i = 0; i < this.adjacencyLists.length; i++) {
+
+        for (let i = 0; i < graph.length; i++) {
             if (!visitedNodes[i]) {
                 count++;
-                this.dfsRecursive(i, visitedNodes);
+                dfsRecursive(i, visitedNodes);
             }
 
         }
