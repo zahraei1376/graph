@@ -7,3 +7,4 @@ Graph implementation with adjacency lists and its algorithms:
 - topology
 - circle
 - strongly connected
+- alticulation point
