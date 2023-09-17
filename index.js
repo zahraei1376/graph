@@ -60,6 +60,7 @@ edges.forEach(edge => {
 });
 
 console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
+console.log(unDirectedGraph.alticulationPoint());
 
 
 

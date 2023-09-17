@@ -125,10 +125,52 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         const temporaryAdjacencyLists = [...this.adjacencyLists];
         let deletedNodes = null;
         for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
-            // this.removeVertex(i, temporaryAdjacencyLists);
             deletedNodes = i;
             if (!this.checkingConnectOfGraph(temporaryAdjacencyLists, deletedNodes)) result.push(i);
         }
+        return result;
+    }
+
+    alticulationPoint = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+        const disCoveryTimes = new Array(this.adjacencyLists.length).fill(0);
+        const lowTimes = new Array(this.adjacencyLists.length).fill(0);
+        const parents = new Array(this.adjacencyLists.length).fill(null);
+        const result = [];
+        let time = 0;
+
+        const dfsVisit = (vertex) => {
+            time++;
+            visitedNodes[vertex] = true;
+            disCoveryTimes[vertex] = lowTimes[vertex] = time;
+            const neighbors = this.adjacencyLists[vertex];
+            let child = 0;
+            for (let i = 0; i < neighbors.length; i++) {
+                if (!visitedNodes[neighbors[i]]) {
+                    child++;
+                    parents[neighbors[i]] = vertex;
+                    dfsVisit(neighbors[i]);
+                    lowTimes[vertex] = Math.min(lowTimes[vertex], lowTimes[neighbors[i]]);
+                    if (parents[vertex] === null && child > 1) {
+                        result.push(vertex);
+                    } else if (parents[vertex] !== null && lowTimes[neighbors[i]] >= disCoveryTimes[vertex]) {
+                        result.push(vertex)
+                    }
+                } else {
+                    if (parents[vertex] !== neighbors[i]) {
+                        lowTimes[vertex] = Math.min(lowTimes[vertex], disCoveryTimes[neighbors[i]])
+                    }
+
+                }
+            }
+        }
+
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                dfsVisit(i);
+            }
+        }
+
         return result;
     }
 }
