@@ -71,7 +71,7 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         return false;
     }
 
-    findConnectedComponents = (graph = this.adjacencyLists, deletedNodes) => {
+    numberOfConnectedComponentsWithDeletedNode = (graph = this.adjacencyLists, deletedNodes) => {
 
         const dfsRecursive = (node, visitedNodes, deletedNodes) => {
             visitedNodes[node] = true;
@@ -93,8 +93,8 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         return count;
     }
 
-    checkingConnectOfGraph = (graph = this.adjacencyLists, deletedNodes) => {
-        const count = this.findConnectedComponents(graph, deletedNodes);
+    checkingConnectOfGraph = (graph = this.adjacencyLists) => {
+        const count = this.numberOfConnectedComponents(graph);
         if (count === 1) return true;
         return false
     }
@@ -124,9 +124,12 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         const result = [];
         const temporaryAdjacencyLists = [...this.adjacencyLists];
         let deletedNodes = null;
+        const count = this.numberOfConnectedComponents(temporaryAdjacencyLists);
         for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
             deletedNodes = i;
-            if (!this.checkingConnectOfGraph(temporaryAdjacencyLists, deletedNodes)) result.push(i);
+            if (this.numberOfConnectedComponentsWithDeletedNode(temporaryAdjacencyLists, deletedNodes) > count) {
+                result.push(i);
+            }
         }
         return result;
     }

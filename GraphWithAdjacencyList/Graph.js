@@ -25,7 +25,7 @@ export class GraphWithAdjacencyList {
         return result;
     }
 
-    findConnectedComponents = (graph = this.adjacencyLists) => {
+    numberOfConnectedComponents = (graph = this.adjacencyLists) => {
 
         const dfsRecursive = (node, visitedNodes) => {
             visitedNodes[node] = true;

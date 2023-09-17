@@ -1,7 +1,7 @@
 import DirectedGraph from "./GraphWithAdjacencyList/DirectedGraph";
 import UnDirectedGraph from "./GraphWithAdjacencyList/UnDirectedGraph";
 
-const nodes = [0, 1, 2, 3, 4, 5, 6];
+const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
 const edges = [
     {
         node1: 0,
