@@ -88,18 +88,24 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
     }
 
     removeVertex = (nodeForDelete, graph = this.adjacencyLists) => {
-        const findIndexNodeForDelete = graph.indexOf(nodeForDelete);
-        if (findIndexNodeForDelete > -1) {
-            graph.splice(nodeForDelete, 1);
+        if (nodeForDelete > graph.length) return;
 
-            for (const vertex of graph) {
-                this.removeEdge(vertex, nodeForDelete, graph);
-            }
+        const neighborDeletedNode = graph[nodeForDelete];
+        for (let i = 0; i < neighborDeletedNode.length; i++) {
+            this.removeEdge(nodeForDelete, neighborDeletedNode[i], graph);
         }
+
+        graph.splice(nodeForDelete, 1);
     }
 
     alticulationPointWithRomoveEdges = () => {
-
+        const result = [];
+        const temporaryAdjacencyLists = [...this.adjacencyLists];
+        for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
+            this.removeVertex(i, temporaryAdjacencyLists);
+            if (!this.checkingConnectOfGraph(temporaryAdjacencyLists)) result.push(i);
+        }
+        return result;
     }
 }
 
