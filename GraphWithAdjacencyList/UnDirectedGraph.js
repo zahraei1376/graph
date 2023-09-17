@@ -71,8 +71,30 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
         return false;
     }
 
-    checkingConnectOfGraph = (graph = this.adjacencyLists) => {
-        const count = this.findConnectedComponents(graph);
+    findConnectedComponents = (graph = this.adjacencyLists, deletedNodes) => {
+
+        const dfsRecursive = (node, visitedNodes, deletedNodes) => {
+            visitedNodes[node] = true;
+            for (const neighbor of graph[node]) {
+                if (!visitedNodes[neighbor] && deletedNodes !== neighbor) dfsRecursive(neighbor, visitedNodes, deletedNodes);
+            }
+        }
+
+        const visitedNodes = [];
+        let count = 0;
+
+        for (let i = 0; i < graph.length; i++) {
+            if (!visitedNodes[i] && deletedNodes !== i) {
+                count++;
+                dfsRecursive(i, visitedNodes, deletedNodes);
+            }
+
+        }
+        return count;
+    }
+
+    checkingConnectOfGraph = (graph = this.adjacencyLists, deletedNodes) => {
+        const count = this.findConnectedComponents(graph, deletedNodes);
         if (count === 1) return true;
         return false
     }
@@ -101,9 +123,11 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
     alticulationPointWithRomoveEdges = () => {
         const result = [];
         const temporaryAdjacencyLists = [...this.adjacencyLists];
+        let deletedNodes = null;
         for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
-            this.removeVertex(i, temporaryAdjacencyLists);
-            if (!this.checkingConnectOfGraph(temporaryAdjacencyLists)) result.push(i);
+            // this.removeVertex(i, temporaryAdjacencyLists);
+            deletedNodes = i;
+            if (!this.checkingConnectOfGraph(temporaryAdjacencyLists, deletedNodes)) result.push(i);
         }
         return result;
     }
