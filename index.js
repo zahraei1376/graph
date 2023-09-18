@@ -59,9 +59,9 @@ edges.forEach(edge => {
     unDirectedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
 });
 
-console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
-console.log(unDirectedGraph.alticulationPoint());
-
+// console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
+// console.log(unDirectedGraph.alticulationPoint());
+console.log(unDirectedGraph.bridgeWithRomoveEdges());
 
 
 

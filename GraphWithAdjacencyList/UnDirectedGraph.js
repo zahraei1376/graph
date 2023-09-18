@@ -176,6 +176,32 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
 
         return result;
     }
+
+    findBridgesWithRomoveEdges = () => {
+
+        const addEdge = (node1, node2, adjacencyLists) => {
+            if (adjacencyLists[node1] === undefined || adjacencyLists[node2] === undefined) return;
+            adjacencyLists[node1].push(node2);
+            adjacencyLists[node2].push(node1);
+        }
+
+        const temporaryAdjacencyLists = [...this.adjacencyLists];
+        const count = this.numberOfConnectedComponents(temporaryAdjacencyLists);
+        const result = [];
+
+        for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
+            const neighbors = temporaryAdjacencyLists[i];
+            for (let j = 0; j < neighbors.length; j++) {
+                const neighbor = neighbors[j];
+                this.removeEdge(i, neighbor, temporaryAdjacencyLists);
+                if (this.numberOfConnectedComponents(temporaryAdjacencyLists) > count) {
+                    result.push(`${i} => ${neighbor}`);
+                }
+                addEdge(i, neighbor, temporaryAdjacencyLists);
+            }
+        }
+        return result;
+    }
 }
 
 export default UnDirectedGraph;
