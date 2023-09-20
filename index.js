@@ -36,6 +36,17 @@ const edges = [
         node2: 6,
     },
 ];
+// const nodes = [0, 1, 2, 3];
+// const edges = [
+//     {
+//         node1: 0,
+//         node2: 1,
+//     },
+//     {
+//         node1: 1,
+//         node2: 2,
+//     },
+// ];
 
 // const directedGraph = new DirectedGraph();
 
@@ -61,8 +72,7 @@ edges.forEach(edge => {
 
 // console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
 // console.log(unDirectedGraph.alticulationPoint());
-console.log(unDirectedGraph.bridgeWithRomoveEdges());
-
+console.log(unDirectedGraph.findBridgesWithRomoveEdges());
 
 
 

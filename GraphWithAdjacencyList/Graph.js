@@ -26,11 +26,12 @@ export class GraphWithAdjacencyList {
     }
 
     numberOfConnectedComponents = (graph = this.adjacencyLists) => {
-
         const dfsRecursive = (node, visitedNodes) => {
             visitedNodes[node] = true;
-            for (const neighbor of graph[node]) {
-                if (!visitedNodes[neighbor]) dfsRecursive(neighbor, visitedNodes);
+            const neighbors = graph[node];
+
+            for (let i = 0; i < neighbors?.length; i++) {
+                if (!visitedNodes[neighbors[i]]) dfsRecursive(neighbors[i], visitedNodes);
             }
         }
 

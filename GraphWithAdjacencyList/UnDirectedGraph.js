@@ -181,25 +181,45 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
 
         const addEdge = (node1, node2, adjacencyLists) => {
             if (adjacencyLists[node1] === undefined || adjacencyLists[node2] === undefined) return;
-            adjacencyLists[node1].push(node2);
-            adjacencyLists[node2].push(node1);
+
+            const index1 = adjacencyLists[node1].indexOf(-1);
+            const index2 = adjacencyLists[node2].indexOf(-1);
+
+            if (index1 > -1 && index2 > -1) {
+                adjacencyLists[node1].splice(index1, 1, node2);
+                adjacencyLists[node2].splice(index2, 1, node1);
+            }
+        }
+
+        const removeEdge = (node1, node2, adjacencyLists) => {
+            const index1 = adjacencyLists[node1].indexOf(node2);
+            const index2 = adjacencyLists[node2].indexOf(node1);
+
+            if (index1 > -1 && index2 > -1) {
+                adjacencyLists[node1].splice(index1, 1, -1);
+                adjacencyLists[node2].splice(index2, 1, -1);
+            }
         }
 
         const temporaryAdjacencyLists = [...this.adjacencyLists];
         const count = this.numberOfConnectedComponents(temporaryAdjacencyLists);
+        const visitedNodes = new Array(temporaryAdjacencyLists.length).fill(false);
         const result = [];
 
         for (let i = 0; i < temporaryAdjacencyLists.length; i++) {
+            visitedNodes[i] = true;
             const neighbors = temporaryAdjacencyLists[i];
-            for (let j = 0; j < neighbors.length; j++) {
-                const neighbor = neighbors[j];
-                this.removeEdge(i, neighbor, temporaryAdjacencyLists);
-                if (this.numberOfConnectedComponents(temporaryAdjacencyLists) > count) {
-                    result.push(`${i} => ${neighbor}`);
+            neighbors.forEach(neighbor => {
+                if (!visitedNodes[neighbor]) {
+                    removeEdge(i, neighbor, temporaryAdjacencyLists);
+                    if (this.numberOfConnectedComponents(temporaryAdjacencyLists) > count) {
+                        result.push([i, neighbor]);
+                    }
+                    addEdge(i, neighbor, temporaryAdjacencyLists);
                 }
-                addEdge(i, neighbor, temporaryAdjacencyLists);
-            }
+            });
         }
+
         return result;
     }
 }
