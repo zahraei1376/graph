@@ -213,11 +213,50 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
                 if (!visitedNodes[neighbor]) {
                     removeEdge(i, neighbor, temporaryAdjacencyLists);
                     if (this.numberOfConnectedComponents(temporaryAdjacencyLists) > count) {
-                        result.push([i, neighbor]);
+                        result.push(`${i} => ${neighbor}`);
                     }
                     addEdge(i, neighbor, temporaryAdjacencyLists);
                 }
             });
+        }
+
+        return result;
+    }
+
+    findBridges = () => {
+        const visitedNodes = new Array(this.adjacencyLists.length).fill(false);
+        const parents = new Array(this.adjacencyLists.length).fill(null);
+        const disCoveryTimes = new Array(this.adjacencyLists.length).fill(0);
+        const lowTimes = new Array(this.adjacencyLists.length).fill(0);
+        const result = [];
+        let time = 0;
+
+        const dfsVisit = (vertex) => {
+            time++;
+            visitedNodes[vertex] = true;
+            disCoveryTimes[vertex] = lowTimes[vertex] = time;
+            const neighbors = this.adjacencyLists[vertex];
+            for (let i = 0; i < neighbors.length; i++) {
+                if (!visitedNodes[neighbors[i]]) {
+                    parents[neighbors[i]] = vertex;
+
+                    dfsVisit(neighbors[i]);
+                    lowTimes[vertex] = Math.min(lowTimes[vertex, lowTimes[neighbors[i]]]);
+                    if (lowTimes[neighbors[i]] != lowTimes[vertex]) {
+                        result.push(`${vertex} => ${neighbors[i]}`);
+                    }
+                } else {
+                    if (parents[vertex] !== neighbors[i]) {
+                        lowTimes[vertex] = Math.min(lowTimes[vertex], disCoveryTimes[neighbors[i]]);
+                    }
+                }
+            }
+        }
+
+        for (let i = 0; i < this.adjacencyLists.length; i++) {
+            if (!visitedNodes[i]) {
+                dfsVisit(i, visitedNodes, result);
+            }
         }
 
         return result;
