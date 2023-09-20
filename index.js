@@ -1,5 +1,5 @@
-import DirectedGraph from "./GraphWithAdjacencyList/DirectedGraph";
-import UnDirectedGraph from "./GraphWithAdjacencyList/UnDirectedGraph";
+import DirectedGraph from "./GraphWithAdjacencyList/Graph/DirectedGraph";
+import UnDirectedGraph from "./GraphWithAdjacencyList/Graph/UnDirectedGraph";
 
 const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
 const edges = [
