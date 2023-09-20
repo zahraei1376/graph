@@ -1,19 +1,19 @@
 export class GraphWithAdjacencyList {
-    constructor(vertices) {
-        this.vertices = vertices;
-        this.adjacencyLists = new Map();
-        for (const vertex of vertices) {
-            this.adjacencyLists.set(vertex, []);
-        }
+    constructor() {
+        this.adjacencyLists = [];
+    }
+    //add adjacency list for every node
+    addAdjacency = (node) => {
+        if (!this.adjacencyLists[node]) this.adjacencyLists[node] = [];
     }
 
     addEdgeToAdjacency = (node1, node2, directed = false) => {
-        if (!this.adjacencyLists.get(node1)) throw new Error(`node ${node1} is not exist`);
-        if (!this.adjacencyLists.get(node2)) throw new Error(`node ${node2} is not exist`);
+        if (!this.adjacencyLists[node1]) this.addAdjacency(node1);
+        if (!this.adjacencyLists[node2]) this.addAdjacency(node2);
 
-        this.adjacencyLists.get(node1).push(node2);
+        this.adjacencyLists[node1].push(node2);
         if (!directed) {
-            this.adjacencyLists.get(node2).push(node1);
+            this.adjacencyLists[node2].push(node1);
         }
     }
 
@@ -184,4 +184,69 @@ export class GraphWithAdjacencyList {
 
     //     return dfsOnstronglyConnectedComponents();
     // }
+}
+
+export class GraphWithAdjacencyList2 {
+    constructor(numberOfNodes) {
+        this.adjacencyLists = [];
+        for (let index = 0; index < numberOfNodes; index++) {
+            this.adjacencyLists[index] = new Set([]);
+        }
+    }
+
+    addEdgeToAdjacency = (node1, node2, directed = false) => {
+        this.adjacencyLists[node1].add(node2);
+        if (!directed) {
+            this.adjacencyLists[node2].add(node1);
+        }
+    }
+
+    bfs = (startNode) => {
+        const queue = [startNode];
+        const visitedNodes = [];
+        visitedNodes[startNode] = true;
+        let result = ``;
+        while (queue.length) {
+            let currentVisited = queue.shift();
+            result += currentVisited + " ";
+            this.adjacencyLists[currentVisited].forEach(connectNode => {
+                if (!visitedNodes[connectNode]) {
+                    visitedNodes[connectNode] = true;
+                    queue.push(connectNode);
+                }
+            })
+        }
+        return result;
+    }
+
+    dfs = (startNode) => {
+        const visitedNodes = [];
+        let result = ``;
+        const dfsVisit = (node) => {
+            if (node == null) return;
+            visitedNodes[node] = true;
+            result += node;
+            this.adjacencyLists[node].forEach(connectNode => {
+                if (!visitedNodes[connectNode]) dfsVisit(connectNode);
+            });
+        }
+
+        dfsVisit(startNode);
+        //If the graph is not connected or if there is no edge to a certain vertex in the directed graph, check it as well.
+        for (let i = 0; i < Array.from(this.adjacencyLists).length; i++) {
+            if (!visitedNodes[i]) {
+                dfsVisit(i)
+            }
+
+        }
+        return result;
+    }
+
+    print = () => {
+        let result = ``;
+        this.adjacencyLists.forEach((edges, key) => {
+            result += `${key} --> ${Array.from(edges).join(",", " ")}` + "\n";
+        });
+        return result;
+    }
 }
