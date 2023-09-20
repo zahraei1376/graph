@@ -1,16 +1,16 @@
 import { GraphWithAdjacencyList } from "./Graph";
 
 class UnDirectedGraph extends GraphWithAdjacencyList {
-    constructor() {
-        super();
+    constructor(vertices) {
+        super(vertices);
     }
 
     addEdgeToAdjacency = (node1, node2) => {
-        if (!this.adjacencyLists[node1]) this.addAdjacency(node1);
-        if (!this.adjacencyLists[node2]) this.addAdjacency(node2);
+        if (!this.adjacencyLists.get(node1)) throw new Error(`node ${node1} is not exist`);
+        if (!this.adjacencyLists.get(node2)) throw new Error(`node ${node2} is not exist`);
 
-        this.adjacencyLists[node1].push(node2);
-        this.adjacencyLists[node2].push(node1);
+        this.adjacencyLists.get(node1).push(node2);
+        this.adjacencyLists.get(node2).push(node1);
     }
 
     hasCircleInUndirectedGraphRecursive = () => {
@@ -241,7 +241,10 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
                     parents[neighbors[i]] = vertex;
                     dfsVisit(neighbors[i]);
                     lowTimes[vertex] = Math.min(lowTimes[vertex], lowTimes[neighbors[i]]);
-                    if (lowTimes[neighbors[i]] !== lowTimes[vertex]) {
+                    // if (lowTimes[neighbors[i]] !== lowTimes[vertex]) {
+                    //     result.push(`${vertex} => ${neighbors[i]}`);
+                    // }
+                    if (lowTimes[neighbors[i]] > disCoveryTimes[vertex]) {
                         result.push(`${vertex} => ${neighbors[i]}`);
                     }
                 } else {

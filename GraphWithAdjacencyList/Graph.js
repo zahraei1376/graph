@@ -1,23 +1,25 @@
 export class GraphWithAdjacencyList {
-    constructor() {
-        this.adjacencyLists = [];
-    }
-    //add adjacency list for every node
-    addAdjacency = (node) => {
-        if (!this.adjacencyLists[node]) this.adjacencyLists[node] = [];
+    constructor(vertices) {
+        this.vertices = vertices;
+        this.adjacencyLists = new Map();
+        for (const vertex of vertices) {
+            this.adjacencyLists.set(vertex, []);
+        }
     }
 
     addEdgeToAdjacency = (node1, node2, directed = false) => {
-        if (!this.adjacencyLists[node1]) this.addAdjacency(node1);
-        if (!this.adjacencyLists[node2]) this.addAdjacency(node2);
+        console.log("this.adjacencyLists.get(node1)", this.adjacencyLists.get(node1));
+        if (!this.adjacencyLists.get(node1)) throw new Error(`node ${node1} is not exist`);
+        if (!this.adjacencyLists.get(node2)) throw new Error(`node ${node2} is not exist`);
 
-        this.adjacencyLists[node1].push(node2);
+        this.adjacencyLists.get(node1).push(node2);
         if (!directed) {
-            this.adjacencyLists[node2].push(node1);
+            this.adjacencyLists.get(node2).push(node1);
         }
     }
 
     print = () => {
+        console.log("this.adjacencyLists", this.adjacencyLists);
         let result = ``;
         this.adjacencyLists.forEach((edges, key) => {
             result += `${key} --> ${edges.join(",", " ")}` + "\n";
