@@ -239,10 +239,9 @@ class UnDirectedGraph extends GraphWithAdjacencyList {
             for (let i = 0; i < neighbors.length; i++) {
                 if (!visitedNodes[neighbors[i]]) {
                     parents[neighbors[i]] = vertex;
-
                     dfsVisit(neighbors[i]);
-                    lowTimes[vertex] = Math.min(lowTimes[vertex, lowTimes[neighbors[i]]]);
-                    if (lowTimes[neighbors[i]] != lowTimes[vertex]) {
+                    lowTimes[vertex] = Math.min(lowTimes[vertex], lowTimes[neighbors[i]]);
+                    if (lowTimes[neighbors[i]] !== lowTimes[vertex]) {
                         result.push(`${vertex} => ${neighbors[i]}`);
                     }
                 } else {

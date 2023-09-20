@@ -46,6 +46,10 @@ const edges = [
         node1: 1,
         node2: 2,
     },
+    {
+        node1: 2,
+        node2: 0,
+    },
 ];
 
 // const directedGraph = new DirectedGraph();
