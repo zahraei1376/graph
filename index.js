@@ -1,5 +1,6 @@
 import DirectedGraph from "./GraphWithAdjacencyList/Graph/DirectedGraph";
 import UnDirectedGraph from "./GraphWithAdjacencyList/Graph/UnDirectedGraph";
+import WeightedUnDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/WeightedUndirectedGraph";
 
 const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
 const edges = [
@@ -27,16 +28,16 @@ const edges = [
         node1: 3,
         node2: 4,
     },
-    {
-        node1: 5,
-        node2: 4,
-    },
-    {
-        node1: 2,
-        node2: 6,
-    },
+    // {
+    //     node1: 5,
+    //     node2: 4,
+    // },
+    // {
+    //     node1: 2,
+    //     node2: 6,
+    // },
 ];
-
+////////////////////////////////////////////////
 // const directedGraph = new DirectedGraph();
 
 // nodes.forEach(node => {
@@ -47,24 +48,50 @@ const edges = [
 //     directedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
 // });
 
-// console.log(directedGraph.findConnectedComponents());
-//////////////////////////////////////
-const unDirectedGraph = new UnDirectedGraph();
+// console.log(directedGraph.numberOfConnectedComponents());
+// console.log(directedGraph.dfsNonRecursive());
+// console.log(directedGraph.bfsNonRecursive());
+// console.log(directedGraph.dfs());
+// console.log(directedGraph.bfs());
+// console.log(directedGraph.topology());
+// console.log(directedGraph.topologyWithoutRecursive());
+// console.log(directedGraph.hasCircleInDirectedGraphRecursive());
+// console.log(directedGraph.hasCircleInDirectedGraph());
+// console.log(directedGraph.stronglyConnectedComponents());
+// //////////////////////////////////////
+// const unDirectedGraph = new UnDirectedGraph();
 
-nodes.forEach(node => {
-    unDirectedGraph.addAdjacency(node);
-});
+// nodes.forEach(node => {
+//     unDirectedGraph.addAdjacency(node);
+// });
 
-edges.forEach(edge => {
-    unDirectedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
-});
+// edges.forEach(edge => {
+//     unDirectedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
+// });
 
-console.log(unDirectedGraph.print());
-console.log(unDirectedGraph.numberOfConnectedComponents());
+// console.log(unDirectedGraph.print());
+// console.log(unDirectedGraph.numberOfConnectedComponents());
+// console.log(unDirectedGraph.dfsNonRecursive());
+// console.log(unDirectedGraph.bfsNonRecursive());
+// console.log(unDirectedGraph.dfs());
+// console.log(unDirectedGraph.bfs());
+// console.log(unDirectedGraph.hasCircleInUndirectedGraphRecursive());
+// console.log(unDirectedGraph.hasCircleInUndirectedGraph());
 // console.log(unDirectedGraph.alticulationPointWithRomoveEdges());
 // console.log(unDirectedGraph.alticulationPoint());
 // console.log(unDirectedGraph.findBridgesWithRomoveEdges());
 // console.log(unDirectedGraph.findBridges());
+///////////////////////////////////////////////////
+const weightedUnDirectedGraph = new WeightedUnDirectedGraph(nodes);
+weightedUnDirectedGraph.addEdge(0, 1, 9);
+weightedUnDirectedGraph.addEdge(1, 2, 2);
+weightedUnDirectedGraph.addEdge(2, 3, 4);
+weightedUnDirectedGraph.addEdge(3, 4, 8);
+weightedUnDirectedGraph.addEdge(4, 5, 5);
+weightedUnDirectedGraph.addEdge(5, 6, 1);
+weightedUnDirectedGraph.addEdge(6, 7, 7);
+weightedUnDirectedGraph.addEdge(7, 3, 6);
+weightedUnDirectedGraph.addEdge(7, 1, 3);
 
-
+console.log(weightedUnDirectedGraph.kruskal());
 
