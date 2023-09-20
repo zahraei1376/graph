@@ -9,7 +9,7 @@ export class WeightedGraph {
 
     addEdge = (node1, node2, weight, directed = false) => {
         this.adjacencyLists.get(node1).push({ node: node2, weight });
-        if (directed) {
+        if (!directed) {
             this.adjacencyLists.get(node2).push({ node: node2, weight });
         }
     }
