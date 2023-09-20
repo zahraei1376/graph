@@ -8,3 +8,4 @@ Graph implementation with adjacency lists and its algorithms:
 - circle
 - strongly connected
 - alticulation point
+- find bridges
