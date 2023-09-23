@@ -15,7 +15,7 @@ class WeightedUnDirectedGraph {
 
     }
 
-    kruskal = () => {
+    kruskalWithSet = () => {
 
         const find = (array, node) => {
             for (const [index, elementSet] of array.entries()) {
@@ -49,6 +49,7 @@ class WeightedUnDirectedGraph {
                 result = new Set([...result, ...communityOfSetsOfTwoEdgeNodes]);
             }
         }
+
         return result;
     }
 
