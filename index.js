@@ -2,7 +2,7 @@ import DirectedGraph from "./GraphWithAdjacencyList/Graph/DirectedGraph";
 import UnDirectedGraph from "./GraphWithAdjacencyList/Graph/UnDirectedGraph";
 import WeightedUnDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/WeightedUndirectedGraph";
 
-const nodes = [0, 1, 2, 3, 4, 5, 6, 7];
+const nodes = [0, 1, 2, 3, 4, 5];
 const edges = [
     {
         node1: 0,
@@ -83,15 +83,28 @@ const edges = [
 // console.log(unDirectedGraph.findBridges());
 ///////////////////////////////////////////////////
 const weightedUnDirectedGraph = new WeightedUnDirectedGraph(nodes);
-weightedUnDirectedGraph.addEdge(0, 1, 9);
-weightedUnDirectedGraph.addEdge(1, 2, 2);
-weightedUnDirectedGraph.addEdge(2, 3, 4);
-weightedUnDirectedGraph.addEdge(3, 4, 8);
+// weightedUnDirectedGraph.addEdge(0, 1, 9);
+// weightedUnDirectedGraph.addEdge(1, 2, 2);
+// weightedUnDirectedGraph.addEdge(2, 3, 4);
+// weightedUnDirectedGraph.addEdge(3, 4, 8);
+// weightedUnDirectedGraph.addEdge(4, 5, 5);
+// weightedUnDirectedGraph.addEdge(5, 6, 1);
+// weightedUnDirectedGraph.addEdge(6, 7, 7);
+// weightedUnDirectedGraph.addEdge(7, 3, 6);
+// weightedUnDirectedGraph.addEdge(7, 1, 3);
+weightedUnDirectedGraph.addEdge(1, 3, 2);
+weightedUnDirectedGraph.addEdge(0, 1, 2);
+weightedUnDirectedGraph.addEdge(0, 3, 3);
+weightedUnDirectedGraph.addEdge(0, 2, 4);
 weightedUnDirectedGraph.addEdge(4, 5, 5);
-weightedUnDirectedGraph.addEdge(5, 6, 1);
-weightedUnDirectedGraph.addEdge(6, 7, 7);
-weightedUnDirectedGraph.addEdge(7, 3, 6);
-weightedUnDirectedGraph.addEdge(7, 1, 3);
+weightedUnDirectedGraph.addEdge(2, 3, 6);
+weightedUnDirectedGraph.addEdge(3, 5, 7);
+weightedUnDirectedGraph.addEdge(2, 1, 8);
+weightedUnDirectedGraph.addEdge(2, 4, 9);
+weightedUnDirectedGraph.addEdge(2, 5, 10);
+weightedUnDirectedGraph.addEdge(3, 4, 11);
 
 console.log(weightedUnDirectedGraph.kruskalWithSet());
+
+console.log(weightedUnDirectedGraph.kruskal());
 
