@@ -9,3 +9,4 @@ Graph implementation with adjacency lists and its algorithms:
 - strongly connected
 - alticulation point
 - find bridges
+- kruskal
