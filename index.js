@@ -93,5 +93,5 @@ weightedUnDirectedGraph.addEdge(6, 7, 7);
 weightedUnDirectedGraph.addEdge(7, 3, 6);
 weightedUnDirectedGraph.addEdge(7, 1, 3);
 
-console.log(weightedUnDirectedGraph.kruskal());
+console.log(weightedUnDirectedGraph.kruskalWithSet());
 

@@ -6,8 +6,8 @@ class WeightedUnDirectedGraph {
 
     }
 
-    addEdge = (node1, node2, weight) => {
-        this.edges.push({ node1, node2, weight });
+    addEdge = (source, dest, weight) => {
+        this.edges.push({ source, dest, weight });
     }
 
     #sortByEdges = (obj1, obj2) => {
@@ -41,11 +41,11 @@ class WeightedUnDirectedGraph {
         }
 
         for (const edge of orderedEdges) {
-            const { elementSet: findNode1, index: findIndex1 } = find(list, edge.node1);
-            const { elementSet: findNode2, index: findIndex2 } = find(list, edge.node2);
-            if (findNode1 !== findNode2) {
+            const { elementSet: findSource, index: findIndex1 } = find(list, edge.source);
+            const { elementSet: findDest, index: findIndex2 } = find(list, edge.dest);
+            if (findSource !== findDest) {
                 mergeAndRemove(list, findIndex1, findIndex2)
-                const communityOfSetsOfTwoEdgeNodes = new Set([...findNode1, ...findNode2]);
+                const communityOfSetsOfTwoEdgeNodes = new Set([...findSource, ...findDest]);
                 result = new Set([...result, ...communityOfSetsOfTwoEdgeNodes]);
             }
         }
