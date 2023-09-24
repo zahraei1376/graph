@@ -93,6 +93,49 @@ class WeightedUnDirectedGraph {
         return outputRes;
     }
 
+    #union = (parents, ranks, sourceParent, destParent) => {
+        if (sourceParent !== destParent) {
+            if (ranks[sourceParent] < ranks[destParent]) {
+                parents[sourceParent] = destParent;
+            } else if (ranks[sourceParent] > ranks[destParent]) {
+                parents[destParent] = sourceParent;
+            } else {
+                parents[destParent] = sourceParent;
+                ranks[sourceParent]++;
+            }
+        }
+    }
+
+    kruskalWithParentAndRank = () => {
+        const orderedEdges = this.edges.sort(this.#sortByEdges);
+        const parents = new Array(this.vertices.length);
+        const ranks = new Array(this.vertices.length).fill(0);
+
+        for (let i = 0; i < parents.length; i++) {
+            parents[i] = i;
+        }
+
+        let i = 0;
+        const result = [];
+        while (result.length !== this.vertices.length - 1) {
+            const currentEdge = orderedEdges[i];
+            const sourceParent = this.#findParent(currentEdge.source, parents);
+            const destParent = this.#findParent(currentEdge.dest, parents);
+            if (sourceParent !== destParent) {
+                result.push(currentEdge);
+                this.#union(parents, ranks, sourceParent, destParent);
+            }
+            i++;
+        }
+
+        let outputRes = ``;
+        for (let i = 0; i < result.length; i++) {
+            outputRes += `${result[i].source} => ${result[i].dest} with ${result[i].weight} \n`
+        }
+
+        return outputRes;
+    }
+
 }
 
 export default WeightedUnDirectedGraph;
