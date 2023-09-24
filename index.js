@@ -105,6 +105,5 @@ weightedUnDirectedGraph.addEdge(2, 5, 10);
 weightedUnDirectedGraph.addEdge(3, 4, 11);
 
 console.log(weightedUnDirectedGraph.kruskalWithSet());
-
-console.log(weightedUnDirectedGraph.kruskal());
+console.log(weightedUnDirectedGraph.kruskalWithParent());
 
