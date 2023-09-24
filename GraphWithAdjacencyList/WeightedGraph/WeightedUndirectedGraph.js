@@ -61,7 +61,7 @@ class WeightedUnDirectedGraph {
         }
     }
 
-    kruskal = () => {
+    kruskalWithParent = () => {
         const orderedEdges = this.edges.sort(this.#sortByEdges);
         const parents = new Array(this.vertices.length);
         for (let i = 0; i < parents.length; i++) {
