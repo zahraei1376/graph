@@ -136,6 +136,16 @@ class WeightedUnDirectedGraph {
         return outputRes;
     }
 
+    addEdgesToMatrix = () => {
+        const matrix = new Array(this.vertices.length).fill().map(() => new Array(this.vertices.length).fill(0));
+        for (const edge of this.edges) {
+            matrix[edge.source][edge.dest] = edge.weight;
+            matrix[edge.dest][edge.source] = edge.weight;
+
+        }
+        return matrix;
+    }
+
 }
 
 export default WeightedUnDirectedGraph;
