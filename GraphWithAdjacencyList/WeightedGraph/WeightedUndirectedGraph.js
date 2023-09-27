@@ -136,7 +136,7 @@ class WeightedUnDirectedGraph {
         return outputRes;
     }
 
-    addEdgesToMatrix = () => {
+    #addEdgesToMatrix = () => {
         const matrix = new Array(this.vertices.length).fill().map(() => new Array(this.vertices.length).fill(0));
         for (const edge of this.edges) {
             matrix[edge.source][edge.dest] = edge.weight;
@@ -145,6 +145,47 @@ class WeightedUnDirectedGraph {
         }
         return matrix;
     }
+
+    #selectMinVertex = (valuesVertexes, mstSet) => {
+        let min = window.Infinity;
+        let vertex = null;
+        for (let i = 0; i < valuesVertexes.length; i++) {
+            if (!mstSet[i] && valuesVertexes[i] < min) {
+                vertex = i;
+                min = valuesVertexes;
+            }
+        }
+        return vertex;
+    }
+
+    primWithAdjacencyMatrix = () => {
+        const adjacencyMatrix = this.#addEdgesToMatrix();
+        const valuesVertexes = new Array(this.vertices.length).fill(window.Infinity);
+        const mstSet = new Array(this.vertices.length).fill(false);
+        const parents = new Array(this.vertices.length).fill(-1);
+        let result = ``;
+
+        valuesVertexes[0] = 0;
+
+        for (let i = 0; i < this.vertices.length - 1; i++) {
+            const selectedVertex = this.#selectMinVertex(valuesVertexes, mstSet);
+            mstSet[selectedVertex] = true;
+            for (let j = 0; j < this.vertices.length; j++) {
+                if ((adjacencyMatrix[selectedVertex][j] !== 0 && !mstSet[j]) && adjacencyMatrix[selectedVertex][j] < valuesVertexes[j]) {
+                    valuesVertexes[j] = adjacencyMatrix[selectedVertex][j];
+                    parents[j] = selectedVertex;
+                }
+            }
+        }
+
+        for (let i = 1; i < this.vertices.length; i++) {
+            result += `${parents[i]} => ${i} with weight ${adjacencyMatrix[parents[i]][i]} \n`
+        }
+
+        return result;
+
+    }
+
 
 }
 
