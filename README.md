@@ -10,3 +10,4 @@ Graph implementation with adjacency lists and its algorithms:
 - alticulation point
 - find bridges
 - kruskal
+- prim
