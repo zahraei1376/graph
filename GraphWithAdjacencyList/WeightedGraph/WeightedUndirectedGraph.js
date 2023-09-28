@@ -186,7 +186,7 @@ class WeightedUnDirectedGraph {
 
     }
 
-    addEdgeToList = () => {
+    #addEdgeToList = () => {
         const adjacencyList = new Map();
         for (const vertex of this.vertices) {
             adjacencyList.set(vertex, new Map());
@@ -198,6 +198,34 @@ class WeightedUnDirectedGraph {
         }
 
         return adjacencyList;
+    }
+
+    primWithAdjacencyList = () => {
+        const adjacencyList = this.#addEdgeToList();
+        const valuesVertexes = new Array(this.vertices.length).fill(window.Infinity);
+        const mstSet = new Array(this.vertices.length).fill(false);
+        const parents = new Array(this.vertices.length).fill(-1);
+        let result = ``;
+
+        valuesVertexes[0] = 0;
+
+        for (let i = 0; i < this.vertices.length - 1; i++) {
+            const currentEdge = this.#selectMinVertex(valuesVertexes, mstSet);
+            mstSet[currentEdge] = true;
+            const neighbors = adjacencyList.get(currentEdge);
+            [...neighbors.keys()].forEach(neighbor => {
+                if (neighbors.get(neighbor) < valuesVertexes[neighbor]) {
+                    valuesVertexes[neighbor] = neighbors.get(neighbor);
+                    parents[neighbor] = currentEdge;
+                }
+            })
+        }
+
+        for (let i = 1; i < this.vertices.length; i++) {
+            result += `${parents[i]} => ${i} with weight ${adjacencyList.get(i).get(parents[i])} \n`
+        }
+
+        return result;
     }
 }
 

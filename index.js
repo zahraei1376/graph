@@ -108,4 +108,4 @@ console.log(weightedUnDirectedGraph.kruskalWithSet());
 console.log(weightedUnDirectedGraph.kruskalWithParent());
 console.log(weightedUnDirectedGraph.kruskalWithParentAndRank());
 console.log(weightedUnDirectedGraph.primWithAdjacencyMatrix());
-console.log(weightedUnDirectedGraph.addEdgeToList());
+console.log(weightedUnDirectedGraph.primWithAdjacencyList());
