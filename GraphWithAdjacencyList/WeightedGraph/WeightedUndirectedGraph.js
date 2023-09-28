@@ -186,25 +186,12 @@ class WeightedUnDirectedGraph {
 
     }
 
-    #addEdgeToList = () => {
-        const adjacencyList = [];
+    addEdgeToList = () => {
+        const adjacencyList = new Array(this.vertices.length).fill().map(() => []);
         for (const edge of this.edges) {
-            if (!adjacencyList[edge.source] && !adjacencyList[edge.dest]) {
-                adjacencyList[edge.source] = [];
-                adjacencyList[edge.source].push(edge.dest);
-                adjacencyList[edge.dest] = [];
-                adjacencyList[edge.dest].push(edge.source);
-            } else if (!adjacencyList[edge.source]) {
-                adjacencyList[edge.source] = [];
+            if (!adjacencyList[edge.source].includes(edge.dest)) {
                 adjacencyList[edge.source].push(edge.dest);
                 adjacencyList[edge.dest].push(edge.source);
-            } else if (!adjacencyList[edge.dest]) {
-                adjacencyList[edge.dest] = [];
-                adjacencyList[edge.dest].push(edge.source);
-                adjacencyList[edge.source].push(edge.dest);
-            } else {
-                adjacencyList[edge.dest].push(edge.source);
-                adjacencyList[edge.source].push(edge.dest);
             }
         }
         return adjacencyList;
