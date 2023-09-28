@@ -187,13 +187,16 @@ class WeightedUnDirectedGraph {
     }
 
     addEdgeToList = () => {
-        const adjacencyList = new Array(this.vertices.length).fill().map(() => []);
-        for (const edge of this.edges) {
-            if (!adjacencyList[edge.source].includes(edge.dest)) {
-                adjacencyList[edge.source].push(edge.dest);
-                adjacencyList[edge.dest].push(edge.source);
-            }
+        const adjacencyList = new Map();
+        for (const vertex of this.vertices) {
+            adjacencyList.set(vertex, new Map());
         }
+
+        for (const edge of this.edges) {
+            adjacencyList.get(edge.source).set(edge.dest, edge.weight);
+            adjacencyList.get(edge.dest).set(edge.source, edge.weight);
+        }
+
         return adjacencyList;
     }
 }
