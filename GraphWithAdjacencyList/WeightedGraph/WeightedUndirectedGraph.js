@@ -234,11 +234,11 @@ class WeightedUnDirectedGraph {
         let result = ``;
 
         valuesVertexes[0] = 0;
-
+        let updated = false;
         for (let i = 0; i < this.vertices.length - 1; i++) {
-            let updated = false;
+            updated = false;
             for (const edge of this.edges) {
-                if (valuesVertexes[edge.dest] > valuesVertexes[edge.source] + edge.weight) {
+                if (valuesVertexes[edge.source] !== window.Infinity && valuesVertexes[edge.source] + edge.weight < valuesVertexes[edge.dest]) {
                     valuesVertexes[edge.dest] = valuesVertexes[edge.source] + edge.weight;
                     parents[edge.dest] = edge.source;
                     updated = true;
@@ -250,15 +250,21 @@ class WeightedUnDirectedGraph {
             }
         }
 
-        for (const edge of this.edges) {
-            if (valuesVertexes[edge.dest] > valuesVertexes[edge.source] + edge.weight) {
-                return "graph has -VE edge circle";
+        if (updated) {
+            for (const edge of this.edges) {
+                if (valuesVertexes[edge.source] !== window.Infinity && valuesVertexes[edge.source] + edge.weight < valuesVertexes[edge.dest]) {
+                    return "graph has -VE edge circle";
+                }
             }
         }
 
         console.log(parents);
         for (let i = 1; i < parents.length; i++) {
-            result += `${parents[i]} => ${i} with ${valuesVertexes[i]} weight \n`
+            if (parents[i] === -1) {
+                result += `There is no path to node ${i} \n`
+            } else {
+                result += `${parents[i]} => ${i} with ${valuesVertexes[i]} weight \n`
+            }
         }
         return result;
     }
