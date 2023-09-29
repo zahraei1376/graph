@@ -227,6 +227,35 @@ class WeightedUnDirectedGraph {
 
         return result;
     }
+
+    bellmanFord = () => {
+        const parents = new Array(this.vertices.length).fill(-1);
+        const valuesVertexes = new Array(this.vertices.length).fill(window.Infinity);
+        let result = ``;
+
+        valuesVertexes[0] = 0;
+
+        for (let i = 0; i < this.vertices.length - 1; i++) {
+            for (const edge of this.edges) {
+                if (valuesVertexes[edge.dest] > valuesVertexes[edge.source] + edge.weight) {
+                    valuesVertexes[edge.dest] = valuesVertexes[edge.source] + edge.weight;
+                    parents[edge.dest] = edge.source;
+                }
+            }
+        }
+
+        for (const edge of this.edges) {
+            if (valuesVertexes[edge.source] > valuesVertexes[edge.source] + edge.weight) {
+                return false;
+            }
+        }
+
+        console.log(parents);
+        for (let i = 1; i < parents.length; i++) {
+            result += `${parents[i]} => ${i} with ${valuesVertexes[i]} weight \n`
+        }
+        return result;
+    }
 }
 
 export default WeightedUnDirectedGraph;

@@ -109,3 +109,4 @@ console.log(weightedUnDirectedGraph.kruskalWithParent());
 console.log(weightedUnDirectedGraph.kruskalWithParentAndRank());
 console.log(weightedUnDirectedGraph.primWithAdjacencyMatrix());
 console.log(weightedUnDirectedGraph.primWithAdjacencyList());
+console.log(weightedUnDirectedGraph.bellmanFord());
