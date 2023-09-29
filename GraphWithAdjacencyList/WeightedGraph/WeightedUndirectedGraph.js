@@ -251,8 +251,8 @@ class WeightedUnDirectedGraph {
         }
 
         for (const edge of this.edges) {
-            if (valuesVertexes[edge.source] > valuesVertexes[edge.source] + edge.weight) {
-                return false;
+            if (valuesVertexes[edge.dest] > valuesVertexes[edge.source] + edge.weight) {
+                return "graph has -VE edge circle";
             }
         }
 
