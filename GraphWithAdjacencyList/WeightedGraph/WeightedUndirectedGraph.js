@@ -236,11 +236,17 @@ class WeightedUnDirectedGraph {
         valuesVertexes[0] = 0;
 
         for (let i = 0; i < this.vertices.length - 1; i++) {
+            let updated = false;
             for (const edge of this.edges) {
                 if (valuesVertexes[edge.dest] > valuesVertexes[edge.source] + edge.weight) {
                     valuesVertexes[edge.dest] = valuesVertexes[edge.source] + edge.weight;
                     parents[edge.dest] = edge.source;
+                    updated = true;
                 }
+            }
+
+            if (!updated) {
+                break;
             }
         }
 
