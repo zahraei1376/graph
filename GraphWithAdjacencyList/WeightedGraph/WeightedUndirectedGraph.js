@@ -258,7 +258,6 @@ class WeightedUnDirectedGraph {
             }
         }
 
-        console.log(parents);
         for (let i = 1; i < parents.length; i++) {
             if (parents[i] === -1) {
                 result += `There is no path to node ${i} \n`
