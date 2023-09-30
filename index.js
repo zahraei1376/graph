@@ -4,8 +4,8 @@ import WeightedUnDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weig
 import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/WeighteDirectedGraph";
 
 ////////////////////////////////////////////////
-// const nodes = [0, 1, 2, 3, 4, 5];
-// const edges = [
+// const directedGraphNodes = [0, 1, 2, 3, 4, 5];
+// const directedGraphEdges = [
 //     {
 //         node1: 0,
 //         node2: 1,
@@ -17,10 +17,6 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 //     {
 //         node1: 2,
 //         node2: 3,
-//     },
-//     {
-//         node1: 3,
-//         node2: 0,
 //     },
 //     {
 //         node1: 3,
@@ -38,11 +34,11 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 
 // const directedGraph = new DirectedGraph();
 
-// nodes.forEach(node => {
+// directedGraphNodes.forEach(node => {
 //     directedGraph.addAdjacency(node);
 // });
 
-// edges.forEach(edge => {
+// directedGraphEdges.forEach(edge => {
 //     directedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
 // });
 
@@ -56,9 +52,9 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 // console.log(directedGraph.hasCircleInDirectedGraphRecursive());
 // console.log(directedGraph.hasCircleInDirectedGraph());
 // console.log(directedGraph.stronglyConnectedComponents());
-// //////////////////////////////////////
-// const nodes = [0, 1, 2, 3, 4, 5];
-// const edges = [
+// // //////////////////////////////////////
+// const unDirectedGraphNodes = [0, 1, 2, 3, 4, 5];
+// const unDirectedGraphEdges = [
 //     {
 //         node1: 0,
 //         node2: 1,
@@ -70,10 +66,6 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 //     {
 //         node1: 2,
 //         node2: 3,
-//     },
-//     {
-//         node1: 3,
-//         node2: 0,
 //     },
 //     {
 //         node1: 3,
@@ -90,11 +82,11 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 // ];
 // const unDirectedGraph = new UnDirectedGraph();
 
-// nodes.forEach(node => {
+// unDirectedGraphNodes.forEach(node => {
 //     unDirectedGraph.addAdjacency(node);
 // });
 
-// edges.forEach(edge => {
+// unDirectedGraphEdges.forEach(edge => {
 //     unDirectedGraph.addEdgeToAdjacency(edge.node1, edge.node2);
 // });
 
@@ -110,9 +102,9 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 // console.log(unDirectedGraph.alticulationPoint());
 // console.log(unDirectedGraph.findBridgesWithRomoveEdges());
 // console.log(unDirectedGraph.findBridges());
-///////////////////////////////////////////////////
-// const nodes = [0, 1, 2, 3, 4, 5];
-// const weightedUnDirectedGraph = new WeightedUnDirectedGraph(nodes);
+// ///////////////////////////////////////////////////
+// const weightedUnDirectedGraphNodes = [0, 1, 2, 3, 4, 5];
+// const weightedUnDirectedGraph = new WeightedUnDirectedGraph(weightedUnDirectedGraphNodes);
 
 // weightedUnDirectedGraph.addEdge(1, 3, 2);
 // weightedUnDirectedGraph.addEdge(0, 1, 2);
@@ -133,8 +125,8 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 // console.log(weightedUnDirectedGraph.primWithAdjacencyList());
 // console.log(weightedUnDirectedGraph.bellmanFord());
 ////////////////////////////////////////////////////
-const nodes = [0, 1, 2, 3, 4, 5];
-const weightedDirectedGraph = new WeightedDirectedGraph(nodes);
+const weightedDirectedGraphNodes = [0, 1, 2, 3, 4, 5];
+const weightedDirectedGraph = new WeightedDirectedGraph(weightedDirectedGraphNodes);
 weightedDirectedGraph.addEdge(1, 3, 2);
 weightedDirectedGraph.addEdge(0, 1, 2);
 weightedDirectedGraph.addEdge(0, 3, 3);
@@ -146,3 +138,5 @@ weightedDirectedGraph.addEdge(2, 1, 8);
 weightedDirectedGraph.addEdge(2, 4, 9);
 weightedDirectedGraph.addEdge(2, 5, 10);
 weightedDirectedGraph.addEdge(3, 4, 11);
+
+console.log(weightedDirectedGraph.shortestRoutesOfSameOrigin());
