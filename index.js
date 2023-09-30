@@ -1,43 +1,41 @@
 import DirectedGraph from "./GraphWithAdjacencyList/Graph/DirectedGraph";
 import UnDirectedGraph from "./GraphWithAdjacencyList/Graph/UnDirectedGraph";
 import WeightedUnDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/WeightedUndirectedGraph";
+import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/WeighteDirectedGraph";
 
-const nodes = [0, 1, 2, 3, 4, 5];
-const edges = [
-    {
-        node1: 0,
-        node2: 1,
-    },
-    {
-        node1: 1,
-        node2: 2,
-    },
-    {
-        node1: 2,
-        node2: 3,
-    },
-    {
-        node1: 3,
-        node2: 0,
-    },
-    {
-        node1: 3,
-        node2: 5,
-    },
-    {
-        node1: 3,
-        node2: 4,
-    },
-    // {
-    //     node1: 5,
-    //     node2: 4,
-    // },
-    // {
-    //     node1: 2,
-    //     node2: 6,
-    // },
-];
 ////////////////////////////////////////////////
+// const nodes = [0, 1, 2, 3, 4, 5];
+// const edges = [
+//     {
+//         node1: 0,
+//         node2: 1,
+//     },
+//     {
+//         node1: 1,
+//         node2: 2,
+//     },
+//     {
+//         node1: 2,
+//         node2: 3,
+//     },
+//     {
+//         node1: 3,
+//         node2: 0,
+//     },
+//     {
+//         node1: 3,
+//         node2: 5,
+//     },
+//     {
+//         node1: 3,
+//         node2: 4,
+//     },
+//     {
+//         node1: 5,
+//         node2: 4,
+//     },
+// ];
+
 // const directedGraph = new DirectedGraph();
 
 // nodes.forEach(node => {
@@ -59,6 +57,37 @@ const edges = [
 // console.log(directedGraph.hasCircleInDirectedGraph());
 // console.log(directedGraph.stronglyConnectedComponents());
 // //////////////////////////////////////
+// const nodes = [0, 1, 2, 3, 4, 5];
+// const edges = [
+//     {
+//         node1: 0,
+//         node2: 1,
+//     },
+//     {
+//         node1: 1,
+//         node2: 2,
+//     },
+//     {
+//         node1: 2,
+//         node2: 3,
+//     },
+//     {
+//         node1: 3,
+//         node2: 0,
+//     },
+//     {
+//         node1: 3,
+//         node2: 5,
+//     },
+//     {
+//         node1: 3,
+//         node2: 4,
+//     },
+//     {
+//         node1: 5,
+//         node2: 4,
+//     },
+// ];
 // const unDirectedGraph = new UnDirectedGraph();
 
 // nodes.forEach(node => {
@@ -82,23 +111,38 @@ const edges = [
 // console.log(unDirectedGraph.findBridgesWithRomoveEdges());
 // console.log(unDirectedGraph.findBridges());
 ///////////////////////////////////////////////////
-const weightedUnDirectedGraph = new WeightedUnDirectedGraph(nodes);
+// const nodes = [0, 1, 2, 3, 4, 5];
+// const weightedUnDirectedGraph = new WeightedUnDirectedGraph(nodes);
 
-weightedUnDirectedGraph.addEdge(1, 3, 2);
-weightedUnDirectedGraph.addEdge(0, 1, 2);
-weightedUnDirectedGraph.addEdge(0, 3, 3);
-weightedUnDirectedGraph.addEdge(0, 2, 4);
-weightedUnDirectedGraph.addEdge(4, 5, 5);
-weightedUnDirectedGraph.addEdge(2, 3, 6);
-weightedUnDirectedGraph.addEdge(3, 5, 7);
-weightedUnDirectedGraph.addEdge(2, 1, 8);
-weightedUnDirectedGraph.addEdge(2, 4, 9);
-weightedUnDirectedGraph.addEdge(2, 5, 10);
-weightedUnDirectedGraph.addEdge(3, 4, 11);
+// weightedUnDirectedGraph.addEdge(1, 3, 2);
+// weightedUnDirectedGraph.addEdge(0, 1, 2);
+// weightedUnDirectedGraph.addEdge(0, 3, 3);
+// weightedUnDirectedGraph.addEdge(0, 2, 4);
+// weightedUnDirectedGraph.addEdge(4, 5, 5);
+// weightedUnDirectedGraph.addEdge(2, 3, 6);
+// weightedUnDirectedGraph.addEdge(3, 5, 7);
+// weightedUnDirectedGraph.addEdge(2, 1, 8);
+// weightedUnDirectedGraph.addEdge(2, 4, 9);
+// weightedUnDirectedGraph.addEdge(2, 5, 10);
+// weightedUnDirectedGraph.addEdge(3, 4, 11);
 
-console.log(weightedUnDirectedGraph.kruskalWithSet());
-console.log(weightedUnDirectedGraph.kruskalWithParent());
-console.log(weightedUnDirectedGraph.kruskalWithParentAndRank());
-console.log(weightedUnDirectedGraph.primWithAdjacencyMatrix());
-console.log(weightedUnDirectedGraph.primWithAdjacencyList());
-console.log(weightedUnDirectedGraph.bellmanFord());
+// console.log(weightedUnDirectedGraph.kruskalWithSet());
+// console.log(weightedUnDirectedGraph.kruskalWithParent());
+// console.log(weightedUnDirectedGraph.kruskalWithParentAndRank());
+// console.log(weightedUnDirectedGraph.primWithAdjacencyMatrix());
+// console.log(weightedUnDirectedGraph.primWithAdjacencyList());
+// console.log(weightedUnDirectedGraph.bellmanFord());
+////////////////////////////////////////////////////
+const nodes = [0, 1, 2, 3, 4, 5];
+const weightedDirectedGraph = new WeightedDirectedGraph(nodes);
+weightedDirectedGraph.addEdge(1, 3, 2);
+weightedDirectedGraph.addEdge(0, 1, 2);
+weightedDirectedGraph.addEdge(0, 3, 3);
+weightedDirectedGraph.addEdge(0, 2, 4);
+weightedDirectedGraph.addEdge(4, 5, 5);
+weightedDirectedGraph.addEdge(2, 3, 6);
+weightedDirectedGraph.addEdge(3, 5, 7);
+weightedDirectedGraph.addEdge(2, 1, 8);
+weightedDirectedGraph.addEdge(2, 4, 9);
+weightedDirectedGraph.addEdge(2, 5, 10);
+weightedDirectedGraph.addEdge(3, 4, 11);
