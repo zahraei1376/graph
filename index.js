@@ -140,3 +140,4 @@ weightedDirectedGraph.addEdge(2, 5, 10);
 weightedDirectedGraph.addEdge(3, 4, 11);
 
 console.log(weightedDirectedGraph.shortestRoutesOfSameOrigin());
+console.log(weightedDirectedGraph.dijkstra());
