@@ -12,3 +12,4 @@ Graph implementation with adjacency lists and its algorithms:
 - kruskal
 - prim
 - bellman ford
+- all path
