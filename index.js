@@ -125,19 +125,20 @@ import WeightedDirectedGraph from "./GraphWithAdjacencyList/WeightedGraph/Weight
 // console.log(weightedUnDirectedGraph.primWithAdjacencyList());
 // console.log(weightedUnDirectedGraph.bellmanFord());
 ////////////////////////////////////////////////////
-const weightedDirectedGraphNodes = [0, 1, 2, 3, 4, 5];
+const weightedDirectedGraphNodes = ["a", "b", "c", "d", "e", "f"];
 const weightedDirectedGraph = new WeightedDirectedGraph(weightedDirectedGraphNodes);
-weightedDirectedGraph.addEdge(1, 3, 2);
-weightedDirectedGraph.addEdge(0, 1, 2);
-weightedDirectedGraph.addEdge(0, 3, 3);
-weightedDirectedGraph.addEdge(0, 2, 4);
-weightedDirectedGraph.addEdge(4, 5, 5);
-weightedDirectedGraph.addEdge(2, 3, 6);
-weightedDirectedGraph.addEdge(3, 5, 7);
-weightedDirectedGraph.addEdge(2, 1, 8);
-weightedDirectedGraph.addEdge(2, 4, 9);
-weightedDirectedGraph.addEdge(2, 5, 10);
-weightedDirectedGraph.addEdge(3, 4, 11);
+weightedDirectedGraph.addEdge("b", "d", 2);
+weightedDirectedGraph.addEdge("a", "b", 2);
+weightedDirectedGraph.addEdge("a", "d", 3);
+weightedDirectedGraph.addEdge("a", "c", 4);
+weightedDirectedGraph.addEdge("e", "f", 5);
+weightedDirectedGraph.addEdge("c", "d", 6);
+weightedDirectedGraph.addEdge("d", "f", 7);
+weightedDirectedGraph.addEdge("c", "b", 8);
+weightedDirectedGraph.addEdge("c", "e", 9);
+weightedDirectedGraph.addEdge("c", "f", 10);
+weightedDirectedGraph.addEdge("d", "e", 11);
 
 console.log(weightedDirectedGraph.shortestRoutesOfSameOrigin());
 console.log(weightedDirectedGraph.dijkstra());
+console.log(weightedDirectedGraph.maxFlowFordFulkerson("a", "f"));
