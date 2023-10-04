@@ -141,4 +141,4 @@ weightedDirectedGraph.addEdge("d", "e", 11);
 
 console.log(weightedDirectedGraph.shortestRoutesOfSameOrigin());
 console.log(weightedDirectedGraph.dijkstra());
-console.log(weightedDirectedGraph.maxFlowFordFulkerson("a", "f"));
+console.log(weightedDirectedGraph.maxFlow("a", "f"));

@@ -169,9 +169,43 @@ class WeightedDirectedGraph {
         return result;
     }
 
-    maxFlowFordFulkerson = (source, dest) => {
+    #dicreaseWeight = (adjacencyLists, path, value) => {
+        for (let i = 0; i < path.length - 1; i++) {
+            const currentVertex = path[i];
+            const nextVertex = path[i + 1];
+            const weight = adjacencyLists.get(currentVertex).get(nextVertex);
+            const currentWeight = weight - value;
+            adjacencyLists.get(currentVertex).set(nextVertex, currentWeight);
+        }
+    }
+
+    maxFlow = (source, dest) => {
         const paths = this.printAllPath(source, dest);
-        return paths;
+        const adjacencyLists = this.adjacencyLists;
+        let maxFlow = 0;
+        for (const path of paths) {
+            let min = window.Infinity;
+            for (let i = 0; i < path.length - 1; i++) {
+                const currentVertex = path[i];
+                const nextVertex = path[i + 1];
+                const weight = adjacencyLists.get(currentVertex).get(nextVertex);
+                if (weight === 0) {
+                    min = 0;
+                    break;
+                }
+                if (weight !== 0 && weight < min) {
+                    min = weight;
+                }
+            }
+            this.#dicreaseWeight(adjacencyLists, path, min);
+            maxFlow += min;
+        }
+
+        return maxFlow;
+    }
+
+    maxFlowFordFulkerson = () => {
+
     }
 };
 
