@@ -13,3 +13,4 @@ Graph implementation with adjacency lists and its algorithms:
 - prim
 - bellman ford
 - all path
+- max flow
